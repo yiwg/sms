@@ -17,7 +17,7 @@
 				<i class="icon-home home-icon"></i>
 				<a href="#">试验室数据采集</a>
 			</li>
-			<li class="active">压力机实时数据查看</li>
+			<li class="active">压力机超标处理</li>
 		</ul><!-- .breadcrumb -->
 
 	</div>
@@ -30,7 +30,7 @@
 				<div class="row">
 					<div class="col-xs-12">
 						<div class="table-header">
-							压力机实时数据查看
+							压力机超标处理
 						</div>
 
 						<div class="table-responsive">
@@ -40,7 +40,7 @@
 										<div class="col-xs-2 column">
 											<div class="row">
 												<div class="col-xs-4 column">
-													<label for="form-field-select-1">项目名称</label>
+													<label for="form-field-select-1">部门名称</label>
 												</div>
 												<div class="col-xs-8 column">
 													<select class="form-control"  id="form-field-select-1">
@@ -53,7 +53,7 @@
 										<div class="col-xs-2 column">
 											<div class="row">
 												<div class="col-xs-4 column">
-													<label for="form-field-select-1">试验室名称</label>
+													<label for="form-field-select-1">处理结果</label>
 												</div>
 												<div class="col-xs-8 column">
 													<select class="form-control"  id="form-field-select-2">
@@ -66,7 +66,7 @@
 										<div class="col-xs-2 column">
 											<div class="row">
 												<div class="col-xs-4 column">
-													<label for="form-field-select-1">设备名称</label>
+													<label for="form-field-select-1">实验时间</label>
 												</div>
 												<div class="col-xs-8 column">
 													<select class="form-control"  id="form-field-select-3">
@@ -79,103 +79,10 @@
 										<div class="col-xs-2 column">
 											<div class="row">
 												<div class="col-xs-4 column">
-													<label for="form-field-select-1">实验类型</label>
-												</div>
-												<div class="col-xs-8 column">
-													<select class="form-control"  id="form-field-select-4">
-														<option value="">工程部</option>
-														<option value="AL">实施部</option>
-													</select>
-												</div>
-											</div>
-										</div>
-										<div class="col-xs-2 column">
-											<div class="row">
-												<div class="col-xs-4 column">
-													<label for="form-field-select-1">器件编号</label>
-												</div>
-												<div class="col-xs-8 column">
-													<select class="form-control"  id="form-field-select-5">
-														<option value="">工程部</option>
-														<option value="AL">实施部</option>
-													</select>
-												</div>
-											</div>
-										</div>
-										<div class="col-xs-2 column">
-											<div class="row">
-												<div class="col-xs-4 column">
-													<label for="form-field-select-1">龄期</label>
-												</div>
-												<div class="col-xs-8 column">
-													<select class="form-control"  id="form-field-select-6">
-														<option value="">工程部</option>
-														<option value="AL">实施部</option>
-													</select>
-												</div>
-											</div>
-										</div>
-									</div>
-									<div class="row">
-										<div class="col-xs-2 column">
-											<div class="row">
-												<div class="col-xs-4 column">
-													<label for="form-field-select-1">施工部位</label>
-												</div>
-												<div class="col-xs-8 column">
-													<select class="form-control"  id="form-field-select-7">
-														<option value="">工程部</option>
-														<option value="AL">实施部</option>
-													</select>
-												</div>
-											</div>
-										</div>
-										<div class="col-xs-2 column">
-											<div class="row">
-												<div class="col-xs-4 column">
-													<label for="form-field-select-1">强度设计</label>
-												</div>
-												<div class="col-xs-8 column">
-													<select class="form-control"  id="form-field-select-8">
-														<option value="">工程部</option>
-														<option value="AL">实施部</option>
-													</select>
-												</div>
-											</div>
-										</div>
-										<div class="col-xs-2 column">
-											<div class="row">
-												<div class="col-xs-4 column">
-													<label for="form-field-select-1">评定结果</label>
-												</div>
-												<div class="col-xs-8 column">
-													<select class="form-control"  id="form-field-select-9">
-														<option value="">工程部</option>
-														<option value="AL">实施部</option>
-													</select>
-												</div>
-											</div>
-										</div>
-										<div class="col-xs-2 column">
-											<div class="row">
-												<div class="col-xs-4 column">
-													<label for="form-field-select-1">开始时间</label>
-												</div>
-												<div class="col-xs-8 column">
-													<select class="form-control"  id="form-field-select-10">
-														<option value="">工程部</option>
-														<option value="AL">实施部</option>
-													</select>
-												</div>
-											</div>
-										</div>
-										<div class="col-xs-2 column">
-											<div class="row">
-												<div class="col-xs-4 column">
 													<label for="form-field-select-1">结束时间</label>
 												</div>
 												<div class="col-xs-8 column">
-													<select class="form-control"  id="form-field-select-11">
+													<select class="form-control"  id="form-field-select-4">
 														<option value="">工程部</option>
 														<option value="AL">实施部</option>
 													</select>
@@ -191,10 +98,9 @@
 												<i class="glyphicon glyphicon-repeat"></i>
 												重置
 											</button>
-											<button class="btn btn-sm btn-primary">
-												<i class="glyphicon glyphicon-share-alt"></i>
-												导出
-											</button>
+										</div>
+										<div class="col-xs-2 column">
+
 										</div>
 									</div>
 									</div>
@@ -208,20 +114,18 @@
 										</label>
 									</th>--%>
 									<th class="hidden-480">序号</th>
-									<th class="hidden-480">试验室名称</th>
-									<th class="hidden-480">设备名称</th>
-									<th class="hidden-480">试验类型</th>
-									<th class="hidden-480">设计强度 </th>
-									<th class="hidden-480">试件编号</th>
+									<th class="hidden-480">操作</th>
+									<th class="hidden-480">超标类型</th>
+									<th class="hidden-480">试验时间</th>
 									<th class="hidden-480">施工部位</th>
-									<th class="hidden-480">龄期</th>
-									<th class="hidden-480">试件尺寸</th>
-									<th class="hidden-480">设计强度 </th>
-									<th class="hidden-480">荷载(kN)</th>
-									<th class="hidden-480">强度单值 </th>
-									<th class="hidden-480">查看曲线 </th>
-									<th class="hidden-480">强度代表值 </th>
-									<th class="hidden-480">是否合格 </th>
+									<th class="hidden-480">试验类型</th>
+									<th class="hidden-480">试验编号</th>
+									<th class="hidden-480">处理时间</th>
+									<th class="hidden-480">超标处理人</th>
+									<th class="hidden-480">施工单位负责人</th>
+									<th class="hidden-480">中试审批人</th>
+									<th class="hidden-480">监理审批人</th>
+									<th class="hidden-480">信息编号</th>
 									<th></th>
 								</tr>
 								</thead>

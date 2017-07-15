@@ -17,7 +17,7 @@
 				<i class="icon-home home-icon"></i>
 				<a href="#">试验室数据采集</a>
 			</li>
-			<li class="active">压力机实时数据查看</li>
+			<li class="active">万能机实时数据查看</li>
 		</ul><!-- .breadcrumb -->
 
 	</div>
@@ -30,7 +30,7 @@
 				<div class="row">
 					<div class="col-xs-12">
 						<div class="table-header">
-							压力机实时数据查看
+							万能机实时数据查看
 						</div>
 
 						<div class="table-responsive">
@@ -102,7 +102,7 @@
 												</div>
 											</div>
 										</div>
-										<div class="col-xs-2 column">
+										<%--<div class="col-xs-2 column">
 											<div class="row">
 												<div class="col-xs-4 column">
 													<label for="form-field-select-1">龄期</label>
@@ -114,13 +114,13 @@
 													</select>
 												</div>
 											</div>
-										</div>
+										</div>--%>
 									</div>
 									<div class="row">
 										<div class="col-xs-2 column">
 											<div class="row">
 												<div class="col-xs-4 column">
-													<label for="form-field-select-1">施工部位</label>
+													<label for="form-field-select-1">工程名称</label>
 												</div>
 												<div class="col-xs-8 column">
 													<select class="form-control"  id="form-field-select-7">
@@ -133,7 +133,7 @@
 										<div class="col-xs-2 column">
 											<div class="row">
 												<div class="col-xs-4 column">
-													<label for="form-field-select-1">强度设计</label>
+													<label for="form-field-select-1">施工部位</label>
 												</div>
 												<div class="col-xs-8 column">
 													<select class="form-control"  id="form-field-select-8">
@@ -211,17 +211,21 @@
 									<th class="hidden-480">试验室名称</th>
 									<th class="hidden-480">设备名称</th>
 									<th class="hidden-480">试验类型</th>
-									<th class="hidden-480">设计强度 </th>
-									<th class="hidden-480">试件编号</th>
 									<th class="hidden-480">施工部位</th>
-									<th class="hidden-480">龄期</th>
-									<th class="hidden-480">试件尺寸</th>
-									<th class="hidden-480">设计强度 </th>
-									<th class="hidden-480">荷载(kN)</th>
-									<th class="hidden-480">强度单值 </th>
+									<th class="hidden-480">试件编号</th>
+									<th class="hidden-480">钢筋牌号 </th>
+
+
+									<th class="hidden-480">试验日期</th>
+									<th class="hidden-480">直径</th>
+									<th class="hidden-480">屈服力(KN) </th>
+									<th class="hidden-480">屈服强度(MPa)</th>
+									<th class="hidden-480">抗拉力(KN) </th>
+									<th class="hidden-480">抗拉强度(MPa) </th>
 									<th class="hidden-480">查看曲线 </th>
-									<th class="hidden-480">强度代表值 </th>
-									<th class="hidden-480">是否合格 </th>
+									<th class="hidden-480">记录报表 </th>
+									<th class="hidden-480">是否合格  </th>
+
 									<th></th>
 								</tr>
 								</thead>

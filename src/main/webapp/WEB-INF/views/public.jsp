@@ -267,26 +267,26 @@
 
                     <ul class="submenu">
                         <li>
-                            <a href="${pageContext.request.contextPath}/index/pressRecord.do" target="_self">
+                            <a href="${pageContext.request.contextPath}/index/pressRecord.do" target="_blank">
                                 <%--<a href="/sms/WEB-INF/views/pressRecord.jsp">--%>
                                 <i class="icon-double-angle-right"></i>
                                 压力机实时数据查看
                             </a>
                         </li>
                         <li>
-                            <a href="pressRecord.jsp">
+                            <a href="${pageContext.request.contextPath}/index/universalRecord.do" target="_blank">
                                 <i class="icon-double-angle-right"></i>
                                 万能机实时数据查看
                             </a>
                         </li>
                         <li>
-                            <a href="pressRecord.jsp">
+                            <a href="${pageContext.request.contextPath}/index/pressOver.do" target="_blank">
                                 <i class="icon-double-angle-right"></i>
                                 压力机超标处理
                             </a>
                         </li>
                         <li>
-                            <a href="pressRecord.jsp">
+                            <a href="${pageContext.request.contextPath}/index/pressOver.do">
                                 <i class="icon-double-angle-right"></i>
                                 万能机机超标处理
                             </a>

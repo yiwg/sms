@@ -51,6 +51,10 @@
     <welcome-file-list>
         <welcome-file>index</welcome-file>
     </welcome-file-list>
+    <!--<error-page>
+        <error-code>404</error-code>
+        <location></location>
+    </error-page>-->
 
     <!-- 核心控制器 -->
     <servlet>

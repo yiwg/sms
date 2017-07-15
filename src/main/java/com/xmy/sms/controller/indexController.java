@@ -14,10 +14,28 @@ import javax.servlet.http.HttpServletResponse;
 public class indexController extends BaseController {
 
     @RequestMapping(value = "/pressRecord")
-    public String gotoLogin(HttpServletRequest request,
+    public String gotopressRecord(HttpServletRequest request,
                             HttpServletResponse response) throws Exception {
         logger.debug("indexController.pressRocord()。。。。");
         return "pressRecord";
+    }
+    @RequestMapping(value = "/universalRecord")
+    public String gotoUniversalRecord(HttpServletRequest request,
+                            HttpServletResponse response) throws Exception {
+        logger.debug("indexController.pressRocord()。。。。");
+        return "universalRecord";
+    }
+    @RequestMapping(value = "/pressOver")
+    public String gotoPressOver(HttpServletRequest request,
+                                      HttpServletResponse response) throws Exception {
+        logger.debug("indexController.pressRocord()。。。。");
+        return "pressOver";
+    }
+    @RequestMapping(value = "/universalOver")
+    public String gotoUniversalOver(HttpServletRequest request,
+                                HttpServletResponse response) throws Exception {
+        logger.debug("indexController.pressRocord()。。。。");
+        return "universalOver";
     }
     @RequestMapping(value = "/index")
     public String index(HttpServletRequest request,
