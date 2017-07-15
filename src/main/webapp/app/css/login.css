@@ -1,0 +1,6 @@
+.bg{
+    background-image: url(./images/back.jpg);//此为图片地址
+    background-size: 100% 100%;
+    -moz-background-size: 100% 100%;
+    -webkit-background-size: 100% 100%;
+}
