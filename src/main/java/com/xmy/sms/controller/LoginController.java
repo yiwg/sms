@@ -7,7 +7,6 @@ import com.channelsoft.col.colweb.po.User;
 import com.channelsoft.col.colweb.service.UserServiceI;*/
 import com.xmy.sms.po.AjaxPo;
 import com.xmy.sms.po.User;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
@@ -44,7 +43,7 @@ public class LoginController extends BaseController {
 //		ret.setObj(obj);
 		try
 		{
-		if (!("ywg".equals(user.getUserName())&&"123456".equals(user.getPassWord()))) {
+		if (!("ywg".equals(user.getName())&&"123456".equals(user.getPassWord()))) {
 			ret.setSuccess(false);
     		ret.setMsg("用户名或密码错误！");
 			return ret;

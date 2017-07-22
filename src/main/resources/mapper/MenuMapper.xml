@@ -1,13 +1,16 @@
 <?xml version="1.0" encoding="UTF-8" ?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
-<mapper namespace="com.xmy.sms.mapper.EntMapper" >
-  <resultMap id="BaseResultMap" type="com.xmy.sms.po.Ent" >
+<mapper namespace="com.xmy.sms.mapper.MenuMapper" >
+  <resultMap id="BaseResultMap" type="com.xmy.sms.po.Menu" >
     <!--
       WARNING - @mbggenerated
     -->
-    <id column="ID" property="id" jdbcType="BIGINT" />
-    <result column="ENT_NAME" property="entName" jdbcType="VARCHAR" />
-    <result column="ENT_NUMBER" property="entNumber" jdbcType="INTEGER" />
+    <id column="ID" property="id" jdbcType="INTEGER" />
+    <result column="NAME" property="name" jdbcType="VARCHAR" />
+    <result column="ICON" property="icon" jdbcType="VARCHAR" />
+    <result column="DESCRIPTION" property="description" jdbcType="VARCHAR" />
+    <result column="URL" property="url" jdbcType="VARCHAR" />
+    <result column="PARENT_ID" property="parentId" jdbcType="INTEGER" />
   </resultMap>
   <sql id="Example_Where_Clause" >
     <!--
@@ -77,9 +80,9 @@
     <!--
       WARNING - @mbggenerated
     -->
-    ID, ENT_NAME, ENT_NUMBER
+    ID, NAME, ICON, DESCRIPTION, URL, PARENT_ID
   </sql>
-  <select id="selectBy" resultMap="BaseResultMap" parameterType="com.xmy.sms.po.EntExample" >
+  <select id="selectBy" resultMap="BaseResultMap" parameterType="com.xmy.sms.po.MenuExample" >
     <!--
       WARNING - @mbggenerated
     -->
@@ -88,7 +91,7 @@
       distinct
     </if>
     <include refid="Base_Column_List" />
-    from ent
+    from menu
     <if test="_parameter != null" >
       <include refid="Example_Where_Clause" />
     </if>
@@ -96,20 +99,20 @@
       order by ${orderByClause}
     </if>
   </select>
-  <delete id="deleteBy" parameterType="com.xmy.sms.po.EntExample" >
+  <delete id="deleteBy" parameterType="com.xmy.sms.po.MenuExample" >
     <!--
       WARNING - @mbggenerated
     -->
-    delete from ent
+    delete from menu
     <if test="_parameter != null" >
       <include refid="Example_Where_Clause" />
     </if>
   </delete>
-  <select id="countBy" parameterType="com.xmy.sms.po.EntExample" resultType="java.lang.Integer" >
+  <select id="countBy" parameterType="com.xmy.sms.po.MenuExample" resultType="java.lang.Integer" >
     <!--
       WARNING - @mbggenerated
     -->
-    select count(*) from ent
+    select count(*) from menu
     <if test="_parameter != null" >
       <include refid="Example_Where_Clause" />
     </if>
@@ -118,16 +121,25 @@
     <!--
       WARNING - @mbggenerated
     -->
-    update ent
+    update menu
     <set >
       <if test="record.id != null" >
-        ID = #{record.id,jdbcType=BIGINT},
+        ID = #{record.id,jdbcType=INTEGER},
       </if>
-      <if test="record.entName != null" >
-        ENT_NAME = #{record.entName,jdbcType=VARCHAR},
+      <if test="record.name != null" >
+        NAME = #{record.name,jdbcType=VARCHAR},
       </if>
-      <if test="record.entNumber != null" >
-        ENT_NUMBER = #{record.entNumber,jdbcType=INTEGER},
+      <if test="record.icon != null" >
+        ICON = #{record.icon,jdbcType=VARCHAR},
+      </if>
+      <if test="record.description != null" >
+        DESCRIPTION = #{record.description,jdbcType=VARCHAR},
+      </if>
+      <if test="record.url != null" >
+        URL = #{record.url,jdbcType=VARCHAR},
+      </if>
+      <if test="record.parentId != null" >
+        PARENT_ID = #{record.parentId,jdbcType=INTEGER},
       </if>
     </set>
     <if test="_parameter != null" >
@@ -138,10 +150,13 @@
     <!--
       WARNING - @mbggenerated
     -->
-    update ent
-    set ID = #{record.id,jdbcType=BIGINT},
-      ENT_NAME = #{record.entName,jdbcType=VARCHAR},
-      ENT_NUMBER = #{record.entNumber,jdbcType=INTEGER}
+    update menu
+    set ID = #{record.id,jdbcType=INTEGER},
+      NAME = #{record.name,jdbcType=VARCHAR},
+      ICON = #{record.icon,jdbcType=VARCHAR},
+      DESCRIPTION = #{record.description,jdbcType=VARCHAR},
+      URL = #{record.url,jdbcType=VARCHAR},
+      PARENT_ID = #{record.parentId,jdbcType=INTEGER}
     <if test="_parameter != null" >
       <include refid="Update_By_Example_Where_Clause" />
     </if>

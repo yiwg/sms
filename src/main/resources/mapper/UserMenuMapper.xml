@@ -1,18 +1,13 @@
 <?xml version="1.0" encoding="UTF-8" ?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
-<mapper namespace="com.xmy.sms.mapper.UserMapper" >
-  <resultMap id="BaseResultMap" type="com.xmy.sms.po.User" >
+<mapper namespace="com.xmy.sms.mapper.UserMenuMapper" >
+  <resultMap id="BaseResultMap" type="com.xmy.sms.po.UserMenu" >
     <!--
       WARNING - @mbggenerated
     -->
-    <id column="ID" property="id" jdbcType="INTEGER" />
-    <result column="NAME" property="name" jdbcType="VARCHAR" />
-    <result column="ACCOUNT" property="account" jdbcType="VARCHAR" />
-    <result column="PASS_WORD" property="passWord" jdbcType="VARCHAR" />
-    <result column="EMAIL" property="email" jdbcType="VARCHAR" />
-    <result column="TYPE" property="type" jdbcType="VARCHAR" />
     <result column="ITEM_ID" property="itemId" jdbcType="INTEGER" />
-    <result column="PHONE_NUM" property="phoneNum" jdbcType="VARCHAR" />
+    <result column="USER_ID" property="userId" jdbcType="INTEGER" />
+    <result column="MENU_ID" property="menuId" jdbcType="INTEGER" />
   </resultMap>
   <sql id="Example_Where_Clause" >
     <!--
@@ -82,9 +77,9 @@
     <!--
       WARNING - @mbggenerated
     -->
-    ID, NAME, ACCOUNT, PASS_WORD, EMAIL, TYPE, ITEM_ID, PHONE_NUM
+    ITEM_ID, USER_ID, MENU_ID
   </sql>
-  <select id="selectBy" resultMap="BaseResultMap" parameterType="com.xmy.sms.po.UserExample" >
+  <select id="selectBy" resultMap="BaseResultMap" parameterType="com.xmy.sms.po.UserMenuExample" >
     <!--
       WARNING - @mbggenerated
     -->
@@ -93,7 +88,7 @@
       distinct
     </if>
     <include refid="Base_Column_List" />
-    from user
+    from user_menu
     <if test="_parameter != null" >
       <include refid="Example_Where_Clause" />
     </if>
@@ -101,20 +96,20 @@
       order by ${orderByClause}
     </if>
   </select>
-  <delete id="deleteBy" parameterType="com.xmy.sms.po.UserExample" >
+  <delete id="deleteBy" parameterType="com.xmy.sms.po.UserMenuExample" >
     <!--
       WARNING - @mbggenerated
     -->
-    delete from user
+    delete from user_menu
     <if test="_parameter != null" >
       <include refid="Example_Where_Clause" />
     </if>
   </delete>
-  <select id="countBy" parameterType="com.xmy.sms.po.UserExample" resultType="java.lang.Integer" >
+  <select id="countBy" parameterType="com.xmy.sms.po.UserMenuExample" resultType="java.lang.Integer" >
     <!--
       WARNING - @mbggenerated
     -->
-    select count(*) from user
+    select count(*) from user_menu
     <if test="_parameter != null" >
       <include refid="Example_Where_Clause" />
     </if>
@@ -123,31 +118,16 @@
     <!--
       WARNING - @mbggenerated
     -->
-    update user
+    update user_menu
     <set >
-      <if test="record.id != null" >
-        ID = #{record.id,jdbcType=INTEGER},
-      </if>
-      <if test="record.name != null" >
-        NAME = #{record.name,jdbcType=VARCHAR},
-      </if>
-      <if test="record.account != null" >
-        ACCOUNT = #{record.account,jdbcType=VARCHAR},
-      </if>
-      <if test="record.passWord != null" >
-        PASS_WORD = #{record.passWord,jdbcType=VARCHAR},
-      </if>
-      <if test="record.email != null" >
-        EMAIL = #{record.email,jdbcType=VARCHAR},
-      </if>
-      <if test="record.type != null" >
-        TYPE = #{record.type,jdbcType=VARCHAR},
-      </if>
       <if test="record.itemId != null" >
         ITEM_ID = #{record.itemId,jdbcType=INTEGER},
       </if>
-      <if test="record.phoneNum != null" >
-        PHONE_NUM = #{record.phoneNum,jdbcType=VARCHAR},
+      <if test="record.userId != null" >
+        USER_ID = #{record.userId,jdbcType=INTEGER},
+      </if>
+      <if test="record.menuId != null" >
+        MENU_ID = #{record.menuId,jdbcType=INTEGER},
       </if>
     </set>
     <if test="_parameter != null" >
@@ -158,15 +138,10 @@
     <!--
       WARNING - @mbggenerated
     -->
-    update user
-    set ID = #{record.id,jdbcType=INTEGER},
-      NAME = #{record.name,jdbcType=VARCHAR},
-      ACCOUNT = #{record.account,jdbcType=VARCHAR},
-      PASS_WORD = #{record.passWord,jdbcType=VARCHAR},
-      EMAIL = #{record.email,jdbcType=VARCHAR},
-      TYPE = #{record.type,jdbcType=VARCHAR},
-      ITEM_ID = #{record.itemId,jdbcType=INTEGER},
-      PHONE_NUM = #{record.phoneNum,jdbcType=VARCHAR}
+    update user_menu
+    set ITEM_ID = #{record.itemId,jdbcType=INTEGER},
+      USER_ID = #{record.userId,jdbcType=INTEGER},
+      MENU_ID = #{record.menuId,jdbcType=INTEGER}
     <if test="_parameter != null" >
       <include refid="Update_By_Example_Where_Clause" />
     </if>
