@@ -11,7 +11,7 @@ import javax.servlet.http.HttpServletResponse;
  */
 @Controller
 @RequestMapping("/index")
-public class indexController extends BaseController {
+public class IndexController extends BaseController {
 
     @RequestMapping(value = "/pressRecord")
     public String gotopressRecord(HttpServletRequest request,
@@ -44,5 +44,12 @@ public class indexController extends BaseController {
             return "login";
         }
         return "index";
+    }
+
+    @RequestMapping(value = "/gotoProjectCfg")
+    public String gotoProjectCfg(HttpServletRequest request,
+                                  HttpServletResponse response) throws Exception {
+        logger.debug("indexController.gotoProjectCfg()。。。。");
+        return "projectCfg";
     }
 }

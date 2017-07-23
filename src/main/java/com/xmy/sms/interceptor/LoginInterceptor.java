@@ -14,11 +14,14 @@ import javax.servlet.http.HttpServletResponse;
 public class LoginInterceptor  extends HandlerInterceptorAdapter {
 
     private Log logger = LogFactory.getLog(getClass());
-
+    private boolean debug=true;
     @Override
     public boolean preHandle(HttpServletRequest request, HttpServletResponse response, Object handler) throws Exception {
         logger.debug("进入LoginInterceptor.preHandle()..............");
 
+        if(debug){
+            return true;
+        }
         String uri = request.getRequestURI();
         //设置不拦截的对象
         String[] noFilters = new String[] { "common", "js",
