@@ -2,12 +2,51 @@
 <%@ page language="java"  contentType="text/html; charset=utf-8" %>
 <html lang="en">
 <head>
-	<%@include file="./public.jsp" %>
+	<link href="${pageContext.request.contextPath}/app/css/bootstrap.min.css" rel="stylesheet" />
+	<link rel="stylesheet" href="${pageContext.request.contextPath}/app/css/font-awesome.min.css" />
 
+	<link rel="stylesheet" href="${pageContext.request.contextPath}/app/css/ace.min.css" />
+	<link rel="stylesheet" href="${pageContext.request.contextPath}/app/css/ace-rtl.min.css" />
+	<link rel="stylesheet" href="${pageContext.request.contextPath}/app/css/ace-skins.min.css" />
+	<link rel="stylesheet" href="${pageContext.request.contextPath}/app/css/jquery-ui-1.10.3.full.min.css" />
+	<link rel="stylesheet"
+		  href="${pageContext.request.contextPath}/app/css/common.css" />
+
+	<script src="${pageContext.request.contextPath}/app/js/jquery.min.js"></script>
+	<script src="${pageContext.request.contextPath}/app/js/jquery-ui-1.10.3.custom.min.js"></script>
+	<script src="${pageContext.request.contextPath}/app/js/jquery-ui-1.10.3.full.min.js"></script>
+	<script src="${pageContext.request.contextPath}/app/js/jquery.ui.touch-punch.min.js"></script>
+
+	<script src="${pageContext.request.contextPath}/app/js/ace-extra.min.js"></script>
+	<script src="${pageContext.request.contextPath}/app/js/bootstrap.min.js"></script>
+	<script src="${pageContext.request.contextPath}/app/js/typeahead-bs2.min.js"></script>
+
+
+	<script src="${pageContext.request.contextPath}/app/js/ace-elements.min.js"></script>
+	<script src="${pageContext.request.contextPath}/app/js/ace.min.js"></script>
+	<script src="${pageContext.request.contextPath}/app/js/jquery.slimscroll.min.js"></script>
+	<script src="${pageContext.request.contextPath}/app/js/jquery.easy-pie-chart.min.js"></script>
+	<script src="${pageContext.request.contextPath}/app/js/jquery.sparkline.min.js"></script>
+	<script src="${pageContext.request.contextPath}/app/js/flot/jquery.flot.min.js"></script>
+	<script src="${pageContext.request.contextPath}/app/js/flot/jquery.flot.pie.min.js"></script>
+	<script src="${pageContext.request.contextPath}/app/js/flot/jquery.flot.resize.min.js"></script>
+	<script type="text/javascript">
+		window.jQuery || document.write("<script src='${pageContext.request.contextPath}/app/js/jquery-2.0.3.min.js'>"+"<"+"script>");
+	</script>
+	<script type="text/javascript">
+		if("ontouchend" in document) document.write("<script src='${pageContext.request.contextPath}/app/js/jquery.mobile.custom.min.js'>"+"<"+"script>");
+	</script>
+	<%--<script src="${pageContext.request.contextPath}/app/js/jquery.min.js"></script>--%>
+	<script src="${pageContext.request.contextPath}/app/js/knockout-3.2.0.js"></script>
+	<script src="${pageContext.request.contextPath}/app/js/sammy.min.js"></script>
+	<script src="${pageContext.request.contextPath}/app/js/ks/ks-validation.js"></script>
+	<script src="${pageContext.request.contextPath}/app/js/ks/ks-dialog.js"></script>
+	<script src="${pageContext.request.contextPath}/app/js/ks/ks-drag.js"></script>
+	<script src="${pageContext.request.contextPath}/app/js/service/project.js"></script>
 </head>
 
 <body>
-<div class="main-content">
+
 	<div class="breadcrumbs" id="breadcrumbs">
 		<script type="text/javascript">
 			try{ace.settings.check('breadcrumbs' , 'fixed')}catch(e){}
@@ -24,232 +63,148 @@
 	</div>
 
 	<div class="page-content">
-		<div class="row">
-			<div class="col-xs-12">
 				<!-- PAGE CONTENT BEGINS -->
+		<div class="row" data-bind="visible: hash() == 'list'">
+			<div class="ks-button-group" data-bind="click: gotoAdd">
+				<span class="primary"><span class="glyphicon glyphicon-plus"></span></span>
+				添加工程
+			</div>
 
-				<div class="row">
-					<div class="col-xs-12">
-						<!-- PAGE CONTENT BEGINS -->
+			<div class="col-xs-12">
+				<div class="table-responsive">
+					<table id="sample-table-1" class="table table-striped table-bordered table-hover ks-table">
+						<thead>
+						<tr>
+							<%--<th class="center">
+								<label>
+									<input type="checkbox" class="ace" />
+									<span class="lbl"></span>
+								</label>
+							</th>--%>
+							<th>ID</th>
+							<th>名称</th>
+							<th class="hidden-480">备注</th>
+							<th>操作</th>
+						</tr>
+						</thead>
 
-						<div class="row">
-							<div class="col-xs-12">
-								<div class="table-responsive">
-									<table id="sample-table-1" class="table table-striped table-bordered table-hover">
-										<thead>
-										<tr>
-											<th class="center">
-												<label>
-													<input type="checkbox" class="ace" />
-													<span class="lbl"></span>
-												</label>
-											</th>
-											<th>ID</th>
-											<th>名称</th>
-											<th class="hidden-480">备注</th>
-											<th>操作</th>
-										</tr>
-										</thead>
+						<tbody class="table-body-tr" data-bind="foreach:listPage">
+						<tr >
+							<%--<td class="center">
+								<label>
+									<input type="checkbox" class="ace" />
+									<span class="lbl"></span>
+								</label>
+							</td>--%>
 
-										<tbody class="table-body-tr" hidden="hidden">
-										<tr class="table-data-tr">
-											<td class="center">
-												<label>
-													<input type="checkbox" class="ace" />
-													<span class="lbl"></span>
-												</label>
-											</td>
+							<td>
+								<a href="#" data-bind="text:id"></a>
+							</td>
+							<td data-bind="text:name"></td>
+							<td data-bind="text:remark"></td>
+							<td>
+								<div class="visible-md visible-lg hidden-sm hidden-xs btn-group">
 
-											<td>
-												<a href="#" class="table-data-id">ace.com</a>
-											</td>
-											<td class="table-data-name">$45</td>
-											<td class="hidden-480 table-data-remark">3,330</td>
-											<td>
-												<div class="visible-md visible-lg hidden-sm hidden-xs btn-group">
-
-													<button class="btn btn-xs btn-info table-data-update">
-														<i class="icon-edit bigger-120"></i>
-													</button>
-
-													<button class="btn btn-xs btn-danger table-data-delete">
-														<i class="icon-trash bigger-120"></i>
-													</button>
-
-												</div>
-
-											</td>
-										</tr>
-										</tbody>
-									</table>
-								</div><!-- /.table-responsive -->
-							</div><!-- /span -->
-						</div><!-- /row -->
-					</div><!-- /.col -->
-				</div><!-- /.row -->
-
-				<div id="modal-table" class="modal fade" tabindex="-1">
-					<div class="modal-dialog">
-						<div class="modal-content">
-							<div class="modal-header no-padding">
-								<div class="table-header">
-									<button type="button" class="close" data-dismiss="modal" aria-hidden="true">
-										<span class="white">&times;</span>
+									<button class="btn btn-xs btn-info table-data-update" data-bind="click: $root.gotoUpdate">
+										<i class="icon-edit bigger-120"></i>
 									</button>
-									Results for "Latest Registered Domains
+
+									<button class="btn btn-xs btn-danger table-data-delete" data-bind="click:  $root.deleteSkillGroup">
+										<i class="icon-trash bigger-120"></i>
+									</button>
+
 								</div>
+
+							</td>
+						</tr>
+						</tbody>
+					</table>
+					<div class="pull-right" data-bind="visible: list().length > 0">
+						<form action="#list" data-bind="submit: setPage">
+							<div class="ks-pager">
+								跳转至 <input type="number"
+										   data-bind="value: currentPageInput, attr:{min: 1, max: totalPage}" />
+								页 <span data-bind="text: currentPage"></span>/<span
+									data-bind="text: totalPage"></span>页
+								<button class="ks-button" type="button"
+										data-bind="click: prevPage, enable: prevPageEnabled, css: {'primary': prevPageEnabled}">&lt;</button>
+								<button class="ks-button" type="button"
+										data-bind="click: nextPage, enable: nextPageEnabled, css: {'primary': nextPageEnabled}">&gt;</button>
 							</div>
+						</form>
+					</div>
+				</div><!-- /.table-responsive -->
+			</div><!-- /span -->
 
-							<div class="modal-body no-padding">
-								<table class="table table-striped table-bordered table-hover no-margin-bottom no-border-top">
-									<thead>
-									<tr>
-										<th>Domain</th>
-										<th>Price</th>
-										<th>Clicks</th>
-
-										<th>
-											<i class="icon-time bigger-110"></i>
-											Update
-										</th>
-									</tr>
-									</thead>
-
-									<tbody>
-									<tr>
-										<td>
-											<a href="#">ace.com</a>
-										</td>
-										<td>$45</td>
-										<td>3,330</td>
-										<td>Feb 12</td>
-									</tr>
-
-									<tr>
-										<td>
-											<a href="#">base.com</a>
-										</td>
-										<td>$35</td>
-										<td>2,595</td>
-										<td>Feb 18</td>
-									</tr>
-
-									<tr>
-										<td>
-											<a href="#">max.com</a>
-										</td>
-										<td>$60</td>
-										<td>4,400</td>
-										<td>Mar 11</td>
-									</tr>
-
-									<tr>
-										<td>
-											<a href="#">best.com</a>
-										</td>
-										<td>$75</td>
-										<td>6,500</td>
-										<td>Apr 03</td>
-									</tr>
-
-									<tr>
-										<td>
-											<a href="#">pro.com</a>
-										</td>
-										<td>$55</td>
-										<td>4,250</td>
-										<td>Jan 21</td>
-									</tr>
-									</tbody>
-								</table>
-							</div>
-
-							<div class="modal-footer no-margin-top">
-								<button class="btn btn-sm btn-danger pull-left" data-dismiss="modal">
-									<i class="icon-remove"></i>
-									Close
-								</button>
-
-								<ul class="pagination pull-right no-margin">
-									<li class="prev disabled">
-										<a href="#">
-											<i class="icon-double-angle-left"></i>
-										</a>
-									</li>
-
-									<li class="active">
-										<a href="#">1</a>
-									</li>
-
-									<li>
-										<a href="#">2</a>
-									</li>
-
-									<li>
-										<a href="#">3</a>
-									</li>
-
-									<li class="next">
-										<a href="#">
-											<i class="icon-double-angle-right"></i>
-										</a>
-									</li>
-								</ul>
-							</div>
-						</div><!-- /.modal-content -->
-					</div><!-- /.modal-dialog -->
-				</div><!-- PAGE CONTENT ENDS -->
-			</div><!-- /.col -->
-		</div><!-- /.row -->
-	</div><!-- /.page-content -->
-	<%@include file="./copyright.jsp" %>
+		</div><!-- /row -->
 </div>
-<script src="${pageContext.request.contextPath}/app/js/service/project.js"></script>
-<script>
-	console.log("页面加载完成");
-	var APP={};
-	APP.ctx="/sms";
-	APP.urls = {
-		list : "/project/list",
-		add : "/project/add",
-		update : "/project/update",
-		delete: "/project/delete",
-	};
+	<div style="display: none;"
+		 data-bind="visible: hash() == 'add' || hash() == 'update'">
+		<div class="ks-form">
+			<div class="ks-form-header">
+				<!-- ko if: hash() == 'add' -->
+				添加工程
+				<!-- /ko -->
+				<!-- ko if: hash() == 'update' -->
+				修改工程
+				<!-- /ko -->
+				<div class="pull-right" style="cursor: pointer;"
+					 data-bind="click: gotoList">
+					<span class="glyphicon glyphicon-remove"></span>
+				</div>
+			</div>
+			<div class="ks-form-content">
+				<form id="skillGroupFormId">
+					<table class="ks-form-table" data-bind="with: tempProject">
+						<tr>
+							<td>名称：</td>
+							<td>
+								<!-- ko if: $root.hash() == 'add' -->
+								<input type="text" class="ks-input" data-bind="value: name" validate="required: true" placeholder="请输入名称" />
+								<!-- /ko --> <!-- ko if: $root.hash() == 'update' -->
+								 <input type="text" class="ks-input" data-bind="value: name" text="value: name"></span>
+								<!-- /ko -->
+							</td>
+							<td></td>
+						</tr>
+						<tr>
+							<td>备注：</td>
+							<td>
+								<!-- ko if: $root.hash() == 'add'  -->
+								<input type="text" class="ks-input" data-bind="value: remark" validate="required: true" placeholder="请输入备注" />
+								<!-- /ko --> <!-- ko if: $root.hash() == 'update' -->
+								<input type="text" class="ks-input" data-bind="value: remark" text="value: remark"></span>
+								<!-- /ko -->
+							</td>
+							<td></td>
+						</tr>
 
-	APP.pageSize=10;
-
-	$.ajax({
-		url : APP.ctx + APP.urls.list,
-		type : "get",
-		dataType : "json",
-		cache : false,
-		data : {
-				pageNum:1,
-				pageSize:APP.pageSize
-		},
-		async : false, // 同步加载
-		success : function(data) {
-			if (data.success) {
-				var list = data.obj;
-				for (var i = 0, len = list.length; i < len; i++) {
-					var item = list[i];
-					self.skillGroupList.push({
-						id : item.id,
-						name : item.skillGroupName,
-						priorityType : item.priorityType,
-						queueType : item.queueType
-					});
-				}
-			} else {
-				// TODO 查询失败
-				alert("查询工程失败！");
-			}
-		},
-		error : function() {
-			// TODO 查询失败
-			alert("查询工程失败！");
-		}
-	});
-</script>
+						<tr>
+							<td>&nbsp;</td>
+							<td>
+								<!-- ko if: $root.hash() == 'add' -->
+								<button class="ks-button primary" data-bind="click: $root.addSkillGroup, disable: $root.saving()">
+									<i class="fa fa-check" data-bind="visible: !$root.saving()"></i>
+									<i class="fa fa-refresh fa-spin" data-bind="visible: $root.saving()"></i>
+									添加
+								</button>
+								<!-- /ko -->
+								<!-- ko if: $root.hash() == 'update' -->
+								<button class="ks-button primary" data-bind="click: $root.updateSkillGroup, disable: $root.saving()">
+									<i class="fa fa-check" data-bind="visible: !$root.saving()"></i>
+									<i class="fa fa-refresh fa-spin" data-bind="visible: $root.saving()"></i>
+									保存
+								</button>
+								<!-- /ko -->
+								&nbsp;
+								<button class="ks-button slave"
+										data-bind="click: $root.gotoList">取消</button>
+							</td>
+						</tr>
+					</table>
+				</form>
+			</div>
+		</div>
+	</div>
 </body>
 </html>

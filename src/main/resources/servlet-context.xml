@@ -98,7 +98,7 @@
     <context:property-placeholder location="classpath:application.properties" ignore-unresolvable="true"/>
     <aop:aspectj-autoproxy proxy-target-class="true"/>
 
-    <mvc:interceptors>
+    <!--<mvc:interceptors>
         <bean class="com.xmy.sms.interceptor.LoginInterceptor"/>
-    </mvc:interceptors>
+    </mvc:interceptors>-->
 </beans>

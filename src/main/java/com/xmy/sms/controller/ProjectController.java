@@ -32,7 +32,7 @@ public class ProjectController extends BaseController {
                             HttpServletResponse response) throws Exception {
         logger.debug("ProjectController.gotoProjectCfg()。。。。");
 
-        return "login";
+        return "projectCfg";
     }
 
     @RequestMapping(value = "/list")

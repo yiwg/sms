@@ -40,10 +40,19 @@ public class IndexController extends BaseController {
     @RequestMapping(value = "/index")
     public String index(HttpServletRequest request,
                         HttpServletResponse response) throws Exception {
-        if (request.getSession().getAttribute("user") == null) {
+        /*if (request.getSession().getAttribute("user") == null) {
             return "login";
-        }
+        }*/
         return "index";
+    }
+
+    @RequestMapping(value = "/map")
+    public String gotoPublic(HttpServletRequest request,
+                        HttpServletResponse response) throws Exception {
+        /*if (request.getSession().getAttribute("user") == null) {
+            return "login";
+        }*/
+        return "map";
     }
 
     @RequestMapping(value = "/gotoProjectCfg")

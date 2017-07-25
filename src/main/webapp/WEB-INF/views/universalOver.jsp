@@ -2,7 +2,38 @@
 <%@ page language="java"  contentType="text/html; charset=utf-8" %>
 <html lang="en">
 <head>
-	<%@include file="./public.jsp" %>
+	<link href="${pageContext.request.contextPath}/app/css/bootstrap.min.css" rel="stylesheet" />
+	<link rel="stylesheet" href="${pageContext.request.contextPath}/app/css/font-awesome.min.css" />
+
+	<link rel="stylesheet" href="${pageContext.request.contextPath}/app/css/ace.min.css" />
+	<link rel="stylesheet" href="${pageContext.request.contextPath}/app/css/ace-rtl.min.css" />
+	<link rel="stylesheet" href="${pageContext.request.contextPath}/app/css/ace-skins.min.css" />
+	<link rel="stylesheet" href="${pageContext.request.contextPath}/app/css/jquery-ui-1.10.3.full.min.css" />
+
+	<script src="${pageContext.request.contextPath}/app/js/jquery.min.js"></script>
+	<script src="${pageContext.request.contextPath}/app/js/jquery-ui-1.10.3.custom.min.js"></script>
+	<script src="${pageContext.request.contextPath}/app/js/jquery-ui-1.10.3.full.min.js"></script>
+	<script src="${pageContext.request.contextPath}/app/js/jquery.ui.touch-punch.min.js"></script>
+
+	<script src="${pageContext.request.contextPath}/app/js/ace-extra.min.js"></script>
+	<script src="${pageContext.request.contextPath}/app/js/bootstrap.min.js"></script>
+	<script src="${pageContext.request.contextPath}/app/js/typeahead-bs2.min.js"></script>
+
+
+	<script src="${pageContext.request.contextPath}/app/js/ace-elements.min.js"></script>
+	<script src="${pageContext.request.contextPath}/app/js/ace.min.js"></script>
+	<script src="${pageContext.request.contextPath}/app/js/jquery.slimscroll.min.js"></script>
+	<script src="${pageContext.request.contextPath}/app/js/jquery.easy-pie-chart.min.js"></script>
+	<script src="${pageContext.request.contextPath}/app/js/jquery.sparkline.min.js"></script>
+	<script src="${pageContext.request.contextPath}/app/js/flot/jquery.flot.min.js"></script>
+	<script src="${pageContext.request.contextPath}/app/js/flot/jquery.flot.pie.min.js"></script>
+	<script src="${pageContext.request.contextPath}/app/js/flot/jquery.flot.resize.min.js"></script>
+	<script type="text/javascript">
+		window.jQuery || document.write("<script src='${pageContext.request.contextPath}/app/js/jquery-2.0.3.min.js'>"+"<"+"script>");
+	</script>
+	<script type="text/javascript">
+		if("ontouchend" in document) document.write("<script src='${pageContext.request.contextPath}/app/js/jquery.mobile.custom.min.js'>"+"<"+"script>");
+	</script>
 </head>
 
 <body>
@@ -320,7 +351,7 @@
 			</div><!-- /.col -->
 		</div><!-- /.row -->
 	</div><!-- /.page-content -->
-	<%@include file="./copyright.jsp" %>
+	<%--<%@include file="./copyright.jsp" %>--%>
 </div>
 <script src="${pageContext.request.contextPath}/app/js/jquery.dataTables.min.js"></script>
 <script src="${pageContext.request.contextPath}/app/js/jquery.dataTables.bootstrap.js"></script>
