@@ -33,6 +33,7 @@ public class ProjectService extends BaseService implements IProjectService{
             //分页助手
             PageHelper.startPage(page.getPageNum(),page.getPageSize());
             ProjectExample projectExample=new ProjectExample();
+            projectExample.setOrderByClause("id asc");
             projects=projectMapper.selectBy(projectExample);
             logger.info("工程获取成功，获取工程个数:"+projects.size());
         }

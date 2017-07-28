@@ -408,6 +408,12 @@
                                 项目配置
                             </a>
                         </li>
+                        <li>
+                            <a href="${pageContext.request.contextPath}/tender/gotoTenderCfg.do" target="iframe">
+                                <i class="icon-double-angle-right"></i>
+                                标段配置
+                            </a>
+                        </li>
 
                     </ul>
                 </li>

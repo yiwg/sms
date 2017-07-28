@@ -161,4 +161,20 @@
       <include refid="Update_By_Example_Where_Clause" />
     </if>
   </update>
+
+  <select  id="queryByKey" resultType="com.xmy.sms.to.TenderTo">
+    select t.id,t.name,t.position,t.photo,t.item_id,i.name itemName,p.name projectName
+    from tender t,item i,project p
+    <where>
+      <if test="tenderTo.name!=null and tenderTo.name!=''">
+        name like CONCAT('%','${tenderTo.name}','%' )
+      </if>
+      <if test="tenderTo.itemName!=null and tenderTo.itemName!=''">
+        and itemName like CONCAT('%','${tenderTo.itemName}','%' )
+      </if>
+      and t.item_id=i.id and t.project_id=p.id
+    </where>
+    ORDER BY t.id ASC
+  </select>
+
 </mapper>

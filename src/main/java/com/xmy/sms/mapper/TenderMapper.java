@@ -3,6 +3,8 @@ package com.xmy.sms.mapper;
 import com.xmy.sms.po.Tender;
 import com.xmy.sms.po.TenderExample;
 import java.util.List;
+
+import com.xmy.sms.to.TenderTo;
 import org.apache.ibatis.annotations.Param;
 import tk.mybatis.mapper.common.Mapper;
 
@@ -16,4 +18,6 @@ public interface TenderMapper extends Mapper<Tender> {
     int updateBySelective(@Param("record") Tender record, @Param("example") TenderExample example);
 
     int updateBy(@Param("record") Tender record, @Param("example") TenderExample example);
+
+    List<TenderTo> queryByKey(@Param("tenderTo") TenderTo tenderTo);
 }

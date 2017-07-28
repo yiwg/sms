@@ -4,11 +4,9 @@ import com.github.pagehelper.Page;
 import com.github.pagehelper.PageInfo;
 import com.xmy.sms.exception.ServiceException;
 import com.xmy.sms.po.AjaxPo;
-import com.xmy.sms.po.Item;
-import com.xmy.sms.po.Project;
-import com.xmy.sms.service.IItemService;
-import com.xmy.sms.service.IProjectService;
-import com.xmy.sms.to.ItemTo;
+import com.xmy.sms.po.Tender;
+import com.xmy.sms.service.ITenderService;
+import com.xmy.sms.to.TenderTo;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -22,29 +20,29 @@ import java.util.List;
  * Created by yiwg on 2017/7/22.
  */
 @Controller
-@RequestMapping("/item")
-public class ItemController extends BaseController {
+@RequestMapping("/tender")
+public class TenderController extends BaseController {
 
     @Autowired
-    private IItemService itemService;
+    private ITenderService tenderService;
 
-    @RequestMapping(value = "/gotoItemCfg")
+    @RequestMapping(value = "/gotoTenderCfg")
     public String gotoProjectCfg(HttpServletRequest request,
                             HttpServletResponse response) throws Exception {
-        logger.debug("ItemController.gotoItemCfg()。。。。");
-        return "itemCfg";
+        logger.debug("TenderController.gotoTenderCfg()。。。。");
+        return "tenderCfg";
     }
 
     @RequestMapping(value = "/list")
     @ResponseBody
-    public AjaxPo list(ItemTo itemTo, PageInfo page, HttpServletRequest request , HttpServletResponse response) {
+    public AjaxPo list(TenderTo tenderTo, PageInfo page, HttpServletRequest request , HttpServletResponse response) {
         if (logger.isDebugEnabled()) {
-            logger.debug("ItemController.query()，参数为:"+itemTo);
+            logger.debug("TenderController.query()，参数为:"+tenderTo);
         }
         AjaxPo ret;
         try{
-            List<ItemTo> itemTos=itemService.list(itemTo,page);
-            ret=toSuccess(itemTos,((Page)itemTos).getTotal());
+            List<TenderTo> tenderTos=tenderService.list(tenderTo,page);
+            ret=toSuccess(tenderTos,((Page)tenderTos).getTotal());
         }
         catch (ServiceException e){
             logger.error("获取工程列表异常",e);
@@ -55,14 +53,14 @@ public class ItemController extends BaseController {
 
     @RequestMapping(value = "/add")
     @ResponseBody
-    public AjaxPo add(Item item, HttpServletRequest request , HttpServletResponse response) {
+    public AjaxPo add(Tender tender, HttpServletRequest request , HttpServletResponse response) {
         if (logger.isDebugEnabled()) {
-            logger.debug("ItemController.add()......参数为:" + item);
+            logger.debug("TenderController.add()......参数为:" + tender);
         }
         AjaxPo ret ;
         try{
-            item=itemService.add(item);
-            ret=toSuccess(item);
+            tender=tenderService.add(tender);
+            ret=toSuccess(tender);
         }
         catch (ServiceException e){
             logger.error("添加失败：",e);
@@ -73,14 +71,14 @@ public class ItemController extends BaseController {
 
    @RequestMapping(value = "/update")
     @ResponseBody
-    public AjaxPo update(Item item, HttpServletRequest request , HttpServletResponse response) {
+    public AjaxPo update(Tender tender, HttpServletRequest request , HttpServletResponse response) {
         if (logger.isDebugEnabled()) {
-            logger.debug("ProjectController.update()......参数为:" + item);
+            logger.debug("ProjectController.update()......参数为:" + tender);
         }
         AjaxPo ret ;
         try{
-            item=itemService.update(item);
-            ret=toSuccess(item);
+            tender=tenderService.update(tender);
+            ret=toSuccess(tender);
         }
         catch (ServiceException e){
             logger.error("更新失败：",e);
@@ -91,13 +89,13 @@ public class ItemController extends BaseController {
 
     @RequestMapping(value = "/delete")
     @ResponseBody
-    public AjaxPo delete(Item item, HttpServletRequest request , HttpServletResponse response) {
+    public AjaxPo delete(Tender tender, HttpServletRequest request , HttpServletResponse response) {
         if (logger.isDebugEnabled()) {
-            logger.debug("ProjectController.delete()......参数为:" + item);
+            logger.debug("ProjectController.delete()......参数为:" + tender);
         }
         AjaxPo ret ;
         try{
-            itemService.delete(item);
+            tenderService.delete(tender);
             ret=toSuccess(null);
         }
         catch (ServiceException e){

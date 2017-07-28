@@ -1,3 +1,4 @@
+<%@ taglib prefix="form" uri="http://www.springframework.org/tags/form" %>
 <!DOCTYPE html>
 <%@ page language="java"  contentType="text/html; charset=utf-8" %>
 <html lang="en">
@@ -42,7 +43,7 @@
 	<script src="${pageContext.request.contextPath}/app/js/ks/ks-validation.js"></script>
 	<script src="${pageContext.request.contextPath}/app/js/ks/ks-dialog.js"></script>
 	<script src="${pageContext.request.contextPath}/app/js/ks/ks-drag.js"></script>
-	<script src="${pageContext.request.contextPath}/app/js/service/item.js"></script>
+	<script src="${pageContext.request.contextPath}/app/js/service/tender.js"></script>
 </head>
 
 <body>
@@ -57,7 +58,7 @@
 				<i class="icon-home home-icon"></i>
 				<a href="#">系统配置</a>
 			</li>
-			<li class="active">项目配置</li>
+			<li class="active">标段配置</li>
 		</ul><!-- .breadcrumb -->
 
 	</div>
@@ -67,7 +68,7 @@
 		<div class="row" data-bind="visible: hash() == 'list'">
 			<div class="ks-button-group" data-bind="click: gotoAdd">
 				<span class="primary"><span class="glyphicon glyphicon-plus"></span></span>
-				添加项目
+				添加标段
 			</div>
 
 			<div class="col-xs-12">
@@ -83,7 +84,10 @@
 							</th>--%>
 							<th>ID</th>
 							<th>名称</th>
+							<th>所属项目</th>
 							<th>所属工程</th>
+							<th>位置</th>
+							<th>照片</th>
 							<th class="hidden-480">备注</th>
 							<th>操作</th>
 						</tr>
@@ -101,9 +105,13 @@
 							<td>
 								<a href="#" data-bind="text:id"></a>
 							</td>
+
 							<td data-bind="text:name"></td>
+							<%--<td data-bind="text:itemId"></td>--%>
+							<td data-bind="text:itemName"></td>
 							<td data-bind="text:projectName"></td>
-							<td data-bind="text:remark"></td>
+							<td data-bind="text:position"></td>
+							<td data-bind="text:photo"></td>
 							<td>
 								<div class="visible-md visible-lg hidden-sm hidden-xs btn-group">
 
@@ -111,7 +119,7 @@
 										<i class="icon-edit bigger-120"></i>
 									</button>
 
-									<button class="btn btn-xs btn-danger table-data-delete" data-bind="click:  $root.deleteItem">
+									<button class="btn btn-xs btn-danger table-data-delete" data-bind="click:  $root.deletetender">
 										<i class="icon-trash bigger-120"></i>
 									</button>
 
@@ -145,10 +153,10 @@
 		<div class="ks-form">
 			<div class="ks-form-header">
 				<!-- ko if: hash() == 'add' -->
-				添加工程
+				添加标段
 				<!-- /ko -->
 				<!-- ko if: hash() == 'update' -->
-				修改工程
+				修改标段
 				<!-- /ko -->
 				<div class="pull-right" style="cursor: pointer;"
 					 data-bind="click: gotoList">
@@ -157,27 +165,36 @@
 			</div>
 			<div class="ks-form-content">
 				<form id="skillGroupFormId">
-					<table class="ks-form-table" data-bind="with: tempItem">
+					<table class="ks-form-table" data-bind="with: temptender">
 						<tr>
-							<td>项目名称：</td>
+							<td>标段名称：</td>
 							<td>
 								<input type="text" class="ks-input" data-bind="value: name"
-									validate="required: true" placeholder="请输入工程名称" />
+									validate="required: true" placeholder="请输入标段名称" />
 							</td>
 
 							<td></td>
 						</tr>
 						<tr>
-							<td>所属工程：</td>
+							<td>所属项目：</td>
 							<td><select class="ks-input" style="height: 35px"
-										data-bind="value:projectId,options: $root.projectTypeList, optionsValue: 'projectId', optionsText: 'projectName'">
+										data-bind="value:itemId,options: $root.itemTypeList, optionsValue: 'itemId', optionsText: 'itemName'">
 							</select></td>
 						</tr>
 						<tr>
-							<td>备注：</td>
+							<td>位置：</td>
 							<td>
 								<input
-										type="text" class="ks-input" data-bind="value: remark"
+										type="text" class="ks-input" data-bind="value: position"
+										validate="required: true" placeholder="备注" />
+
+							</td>
+						</tr>
+						<tr>
+							<td>图片：</td>
+							<td>
+								<input
+										type="text" class="ks-input" data-bind="value: photo"
 										validate="required: true" placeholder="备注" />
 
 							</td>
@@ -186,14 +203,14 @@
 							<td>&nbsp;</td>
 							<td>
 								<!-- ko if: $root.hash() == 'add' -->
-								<button class="ks-button primary" data-bind="click:$root.addItem">
+								<button class="ks-button primary" data-bind="click:$root.addtender">
 									<i class="fa fa-check" data-bind="visible: !$root.saving()"></i>
 									<i class="fa fa-refresh fa-spin" data-bind="visible: $root.saving()"></i>
 									添加
 								</button>
 								<!-- /ko -->
 								<!-- ko if: $root.hash() == 'update' -->
-								<button class="ks-button primary" data-bind="click: $root.updateItem">
+								<button class="ks-button primary" data-bind="click: $root.updatetender">
 									<i class="fa fa-check" data-bind="visible: !$root.saving()"></i>
 									<i class="fa fa-refresh fa-spin" data-bind="visible: $root.saving()"></i>
 									保存

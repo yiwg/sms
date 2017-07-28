@@ -109,6 +109,7 @@
       </if>
       and i.project_id=p.id
     </where>
+    ORDER BY i.id asc
   </select>
   <delete id="deleteBy" parameterType="com.xmy.sms.po.ItemExample" >
     <!--
