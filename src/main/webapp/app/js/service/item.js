@@ -4,18 +4,21 @@
 var APP = {};
 APP.ctx = "/sms";
 APP.urls = {
-    list : "/project/list.do",
-    add : "/project/add.do",
-    update : "/project/update.do",
-    remove : "/project/delete.do",
+    list : "/item/list.do",
+    add : "/item/add.do",
+    update : "/item/update.do",
+    remove : "/item/delete.do",
+    listProject:"/project/list.do"
 };
 APP.constant = {};
 
 APP.pageSize = 10;
 
-APP.Project = function(id, name, remark) {
+APP.Item = function(id, name, projectId,projectName,remark) {
     this.id = id;
     this.name = name;
+    this.projectId=projectId;
+    this.projectName=projectName;
     this.remark = remark;
 };
 
@@ -37,8 +40,41 @@ APP.ViewModel = function() {
     this.hash = ko.observable("list");
     this.list = ko.observableArray();
 
-    this.loadProjectList = function() {
-        //console.log("ajax请求......")
+    this.projectTypeList = ko.observableArray();
+
+    function projectType(){
+        self.projectTypeList([]);
+        $.ajax({
+            url : APP.ctx + APP.urls.listProject,
+            type : "get",
+            dataType : "json",
+            cache : false,
+            data : {},
+            success : function(data) {
+                if (data.success) {
+                    var lis = data.obj;
+                    console.log("获取的project的数量"+lis[0].name)
+                    for(var i=0;i<lis.length;i++){
+                        self.projectTypeList.push({
+                            projectId: lis[i].id,
+                            projectName : lis[i].name
+                        });
+                    }
+
+                } else {
+                    // TODO 查询失败
+                    KS.alert("查询排队方式失败！");
+                }
+            },
+            error : function() {
+                // TODO 查询失败
+                KS.alert("查询失败！");
+            }
+        });
+    }
+
+    this.loadItemList = function() {
+        projectType();
         self.list([]);
         $.ajax({
             url : APP.ctx + APP.urls.list,
@@ -48,12 +84,11 @@ APP.ViewModel = function() {
             data : {},
             success : function(data) {
                 if (data.success) {
-
                     var list = data.obj;
                     for (var i = 0, len = list.length; i < len; i++) {
                         var item = list[i];
-                        self.list.push(new APP.Project(item.id,
-                            item.name, item.remark));
+                        self.list.push(new APP.Item(item.id,
+                            item.name,item.projectId,item.projectName, item.remark));
                     }
 
                 } else {
@@ -160,14 +195,14 @@ APP.ViewModel = function() {
     this.gotoList = function() {
         location.hash = "list";
     };
-    this.tempProject = ko.observable(new APP.Project());
+    this.tempItem = ko.observable(new APP.Item());
     this.saving = ko.observable(false);
-    this.gotoUpdate = function(project) {
-        self.tempProject(new APP.Project(project.id,
-            project.name, project.remark));
+    this.gotoUpdate = function(item) {
+        self.tempItem(new APP.Item(item.id,
+            item.name, item.projectId,item.projectName,item.remark));
         location.hash = "update";
     };
-    this.addProject = function() {
+    this.addItem = function() {
         // 初始化
         $("#skillGroupFormId").initValidate();
         // 添加校验
@@ -177,7 +212,7 @@ APP.ViewModel = function() {
 
         self.saving(true);
 
-        var sg = self.tempProject();
+        var sg = self.tempItem();
         $.ajax({
             url : APP.ctx + APP.urls.add,
             type : "post",
@@ -185,7 +220,8 @@ APP.ViewModel = function() {
             cache : false,
             data : {
                 name : sg.name,
-                remark : sg.remark
+                remark : sg.remark,
+                projectId:sg.projectId
             },
             success : function(data) {
                 console.log(data);
@@ -193,7 +229,7 @@ APP.ViewModel = function() {
                 if (data.success) {
                     KS.alert("添加成功！");
                     self.gotoList();
-                    self.loadProjectList();
+                    self.loadItemList();
                 } else {
                     // TODO 添加失败
                     KS.alert(data.msg);
@@ -210,7 +246,7 @@ APP.ViewModel = function() {
     /**
      * 修改技能组
      */
-    this.updateProject = function() {
+    this.updateItem = function() {
         // 初始化
         $("#skillGroupFormId").initValidate();
         // 添加校验
@@ -220,7 +256,7 @@ APP.ViewModel = function() {
 
         self.saving(true);
 
-        var sg = self.tempProject();
+        var sg = self.tempItem();
         console.log("修改的id："+sg.id);
         $.ajax({
             url : APP.ctx + APP.urls.update,
@@ -250,9 +286,9 @@ APP.ViewModel = function() {
             }
         });
     };
-    this.deleteProject = function(project) {
+    this.deleteItem = function(item) {
         //console.log("删除id："+project.id)
-        var tip = "确定删除选中的" + (project.name)
+        var tip = "确定删除选中的" + (item.name)
             + "工程么？";
         KS.confirm(tip, function(result) {
             if (result) {
@@ -262,7 +298,7 @@ APP.ViewModel = function() {
                     dataType : "json",
                     cache : false,
                     data : {
-                        Id : project.id
+                        Id : item.id
                     },
                     success : function(data) {
                         if (data.success) {
@@ -286,5 +322,5 @@ APP.ViewModel = function() {
 $(function() {
     APP.vm = new APP.ViewModel();
     ko.applyBindings(APP.vm);
-    APP.vm.loadProjectList();
+    APP.vm.loadItemList();
 });

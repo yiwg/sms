@@ -247,6 +247,7 @@
                     </httpConnector>
                     <webAppConfig>
                         <contextPath>/${project.artifactId}</contextPath>
+                        <defaultsDescriptor>jettyCustom.xml</defaultsDescriptor>
                     </webAppConfig>
                     <scanIntervalSeconds>10</scanIntervalSeconds>
                 </configuration>

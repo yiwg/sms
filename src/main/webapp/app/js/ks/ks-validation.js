@@ -41,14 +41,14 @@
         $(element).removeClass("success").addClass("danger");
         var tipElement = getTipElement(location,element);
         tipElement.hide();
-    	tipElement.html("<img src='" + (window.APP && APP.ctx) + "/images/warning.png'/><span class='ks-red' style='font-size: 12px; padding-left: 3px;'>" +
+    	tipElement.html("<img src='" + (window.APP && APP.ctx) + "/app/images/warning.png'/><span class='ks-red' style='font-size: 12px; padding-left: 3px;'>" +
         errorMessage + "</span>").show();
     }
 
     function showSuccessLocation(element,location){
         $(element).addClass("success");
         var tipElement = getTipElement(location,element);
-        tipElement.html("<img src='" + (window.APP && APP.ctx) + "/images/ok.png'/><span class='ks-green' style='font-size: 12px; padding-left: 3px;'>成功</span>").show();
+        tipElement.html("<img src='" + (window.APP && APP.ctx) + "/app/images/ok.png'/><span class='ks-green' style='font-size: 12px; padding-left: 3px;'>成功</span>").show();
     }
     
     function getResult(validateObj,initPara,str){

@@ -402,6 +402,12 @@
                                 工程配置
                             </a>
                         </li>
+                        <li>
+                            <a href="${pageContext.request.contextPath}/item/gotoItemCfg.do" target="iframe">
+                                <i class="icon-double-angle-right"></i>
+                                项目配置
+                            </a>
+                        </li>
 
                     </ul>
                 </li>

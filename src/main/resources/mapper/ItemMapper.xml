@@ -97,6 +97,19 @@
       order by ${orderByClause}
     </if>
   </select>
+  <select  id="queryByKey" resultType="com.xmy.sms.to.ItemTo">
+    select i.id,i.name,i.remark,i.project_id,p.name projectName
+    from item i,project p
+    <where>
+      <if test="itemTo.name!=null and itemTo.name!=''">
+        name like CONCAT('%','${itemTo.name}','%' )
+      </if>
+      <if test="itemTo.projectName!=null and itemTo.projectName!=''">
+        and projectName like CONCAT('%','${itemTo.projectName}','%' )
+      </if>
+      and i.project_id=p.id
+    </where>
+  </select>
   <delete id="deleteBy" parameterType="com.xmy.sms.po.ItemExample" >
     <!--
       WARNING - @mbggenerated

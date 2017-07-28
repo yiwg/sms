@@ -42,7 +42,7 @@
 	<script src="${pageContext.request.contextPath}/app/js/ks/ks-validation.js"></script>
 	<script src="${pageContext.request.contextPath}/app/js/ks/ks-dialog.js"></script>
 	<script src="${pageContext.request.contextPath}/app/js/ks/ks-drag.js"></script>
-	<script src="${pageContext.request.contextPath}/app/js/service/project.js"></script>
+	<script src="${pageContext.request.contextPath}/app/js/service/item.js"></script>
 </head>
 
 <body>
@@ -57,7 +57,7 @@
 				<i class="icon-home home-icon"></i>
 				<a href="#">系统配置</a>
 			</li>
-			<li class="active">工程配置</li>
+			<li class="active">项目配置</li>
 		</ul><!-- .breadcrumb -->
 
 	</div>
@@ -67,7 +67,7 @@
 		<div class="row" data-bind="visible: hash() == 'list'">
 			<div class="ks-button-group" data-bind="click: gotoAdd">
 				<span class="primary"><span class="glyphicon glyphicon-plus"></span></span>
-				添加工程
+				添加项目
 			</div>
 
 			<div class="col-xs-12">
@@ -83,6 +83,7 @@
 							</th>--%>
 							<th>ID</th>
 							<th>名称</th>
+							<th>所属工程</th>
 							<th class="hidden-480">备注</th>
 							<th>操作</th>
 						</tr>
@@ -101,6 +102,7 @@
 								<a href="#" data-bind="text:id"></a>
 							</td>
 							<td data-bind="text:name"></td>
+							<td data-bind="text:projectName"></td>
 							<td data-bind="text:remark"></td>
 							<td>
 								<div class="visible-md visible-lg hidden-sm hidden-xs btn-group">
@@ -155,15 +157,21 @@
 			</div>
 			<div class="ks-form-content">
 				<form id="skillGroupFormId">
-					<table class="ks-form-table" data-bind="with: tempProject">
+					<table class="ks-form-table" data-bind="with: tempItem">
 						<tr>
-							<td>工程名称：</td>
+							<td>项目名称：</td>
 							<td>
 								<input type="text" class="ks-input" data-bind="value: name"
 									validate="required: true" placeholder="请输入工程名称" />
 							</td>
 
 							<td></td>
+						</tr>
+						<tr>
+							<td>所属工程：</td>
+							<td><select class="ks-input" style="height: 35px"
+										data-bind="value:projectId,options: $root.projectTypeList, optionsValue: 'projectId', optionsText: 'projectName'">
+							</select></td>
 						</tr>
 						<tr>
 							<td>备注：</td>
@@ -178,14 +186,14 @@
 							<td>&nbsp;</td>
 							<td>
 								<!-- ko if: $root.hash() == 'add' -->
-								<button class="ks-button primary" data-bind="click:$root.addProject">
+								<button class="ks-button primary" data-bind="click:$root.addItem">
 									<i class="fa fa-check" data-bind="visible: !$root.saving()"></i>
 									<i class="fa fa-refresh fa-spin" data-bind="visible: $root.saving()"></i>
 									添加
 								</button>
 								<!-- /ko -->
 								<!-- ko if: $root.hash() == 'update' -->
-								<button class="ks-button primary" data-bind="click: $root.updateProject">
+								<button class="ks-button primary" data-bind="click: $root.updateItem">
 									<i class="fa fa-check" data-bind="visible: !$root.saving()"></i>
 									<i class="fa fa-refresh fa-spin" data-bind="visible: $root.saving()"></i>
 									保存

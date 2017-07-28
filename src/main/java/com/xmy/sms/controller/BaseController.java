@@ -1,7 +1,11 @@
 package com.xmy.sms.controller;
 
 import com.alibaba.fastjson.JSONObject;
+import com.github.pagehelper.Page;
+import com.xmy.sms.constant.ResultConstant;
+import com.xmy.sms.po.AjaxPo;
 import org.apache.log4j.Logger;
+import org.omg.CORBA.StringHolder;
 
 import java.util.HashMap;
 import java.util.Map;
@@ -70,5 +74,31 @@ public class BaseController  {
         }
         result.put("code",code);
         return new JSONObject(result);
+    }
+    protected AjaxPo toSuccess(Object object){
+        AjaxPo ret = new AjaxPo(true, ResultConstant.SUCCESS_DESC);
+        ret.setObj(object);
+        ret.setCode(ResultConstant.SUCCESS);
+        return ret;
+    }
+    protected AjaxPo toSuccess(Object object,Long total){
+        AjaxPo ret = new AjaxPo(true, ResultConstant.SUCCESS_DESC);
+        ret.setObj(object);
+        ret.setTotal(total);
+        ret.setCode(ResultConstant.SUCCESS);
+        return ret;
+    }
+    protected AjaxPo toFail(int code, String desc){
+        AjaxPo ret = new AjaxPo(false, desc);
+        ret.setCode(code);
+        return ret;
+    }
+
+    protected AjaxPo toFail(int code, String desc,Object object){
+        AjaxPo ret = new AjaxPo(false, desc);
+        ret.setObj(object);
+        ret.setTotal(((Page)object).getTotal());
+        ret.setCode(code);
+        return ret;
     }
 }
