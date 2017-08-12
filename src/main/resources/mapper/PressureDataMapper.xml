@@ -1,0 +1,241 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.xmy.sms.mapper.PressureDataMapper" >
+  <resultMap id="BaseResultMap" type="com.xmy.sms.po.PressureData" >
+    <!--
+      WARNING - @mbggenerated
+    -->
+    <id column="ID" property="id" jdbcType="INTEGER" />
+    <result column="TENDER_ID" property="tenderId" jdbcType="INTEGER" />
+    <result column="LAB_NAME" property="labName" jdbcType="VARCHAR" />
+    <result column="DEVICE_NAME" property="deviceName" jdbcType="VARCHAR" />
+    <result column="TEST_TYPE" property="testType" jdbcType="VARCHAR" />
+    <result column="DEVICE_NUM" property="deviceNum" jdbcType="VARCHAR" />
+    <result column="CONSTRUCTION_POINT" property="constructionPoint" jdbcType="VARCHAR" />
+    <result column="TEST_DATE" property="testDate" jdbcType="TIMESTAMP" />
+    <result column="AGE" property="age" jdbcType="INTEGER" />
+    <result column="DEVICE_SIZE" property="deviceSize" jdbcType="VARCHAR" />
+    <result column="DESIGN_STRENGTH" property="designStrength" jdbcType="VARCHAR" />
+    <result column="LOAD_ONE" property="loadOne" jdbcType="REAL" />
+    <result column="LOAD_TWO" property="loadTwo" jdbcType="REAL" />
+    <result column="LOAD_THREE" property="loadThree" jdbcType="REAL" />
+    <result column="STRENGTH_ONE" property="strengthOne" jdbcType="REAL" />
+    <result column="STRENGTH_TWO" property="strengthTwo" jdbcType="REAL" />
+    <result column="STRENGTH_THREE" property="strengthThree" jdbcType="REAL" />
+    <result column="STRENGTH_VALUE" property="strengthValue" jdbcType="REAL" />
+    <result column="QUALIFIED" property="qualified" jdbcType="INTEGER" />
+    <result column="REMARD" property="remard" jdbcType="VARCHAR" />
+    <result column="DELETE" property="delete" jdbcType="INTEGER" />
+  </resultMap>
+  <sql id="Example_Where_Clause" >
+    <!--
+      WARNING - @mbggenerated
+    -->
+    <where >
+      <foreach collection="oredCriteria" item="criteria" separator="or" >
+        <if test="criteria.valid" >
+          <trim prefix="(" suffix=")" prefixOverrides="and" >
+            <foreach collection="criteria.criteria" item="criterion" >
+              <choose >
+                <when test="criterion.noValue" >
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue" >
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue" >
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue" >
+                  and ${criterion.condition}
+                  <foreach collection="criterion.value" item="listItem" open="(" close=")" separator="," >
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Update_By_Example_Where_Clause" >
+    <!--
+      WARNING - @mbggenerated
+    -->
+    <where >
+      <foreach collection="example.oredCriteria" item="criteria" separator="or" >
+        <if test="criteria.valid" >
+          <trim prefix="(" suffix=")" prefixOverrides="and" >
+            <foreach collection="criteria.criteria" item="criterion" >
+              <choose >
+                <when test="criterion.noValue" >
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue" >
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue" >
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue" >
+                  and ${criterion.condition}
+                  <foreach collection="criterion.value" item="listItem" open="(" close=")" separator="," >
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Base_Column_List" >
+    <!--
+      WARNING - @mbggenerated
+    -->
+    ID, TENDER_ID, LAB_NAME, DEVICE_NAME, TEST_TYPE, DEVICE_NUM, CONSTRUCTION_POINT, 
+    TEST_DATE, AGE, DEVICE_SIZE, DESIGN_STRENGTH, LOAD_ONE, LOAD_TWO, LOAD_THREE, STRENGTH_ONE, 
+    STRENGTH_TWO, STRENGTH_THREE, STRENGTH_VALUE, QUALIFIED, REMARD, DELETE
+  </sql>
+  <select id="selectBy" resultMap="BaseResultMap" parameterType="com.xmy.sms.po.PressureDataExample" >
+    <!--
+      WARNING - @mbggenerated
+    -->
+    select
+    <if test="distinct" >
+      distinct
+    </if>
+    <include refid="Base_Column_List" />
+    from pressure_data
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+    <if test="orderByClause != null" >
+      order by ${orderByClause}
+    </if>
+  </select>
+  <delete id="deleteBy" parameterType="com.xmy.sms.po.PressureDataExample" >
+    <!--
+      WARNING - @mbggenerated
+    -->
+    delete from pressure_data
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+  </delete>
+  <select id="countBy" parameterType="com.xmy.sms.po.PressureDataExample" resultType="java.lang.Integer" >
+    <!--
+      WARNING - @mbggenerated
+    -->
+    select count(*) from pressure_data
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+  </select>
+  <update id="updateBySelective" parameterType="map" >
+    <!--
+      WARNING - @mbggenerated
+    -->
+    update pressure_data
+    <set >
+      <if test="record.id != null" >
+        ID = #{record.id,jdbcType=INTEGER},
+      </if>
+      <if test="record.tenderId != null" >
+        TENDER_ID = #{record.tenderId,jdbcType=INTEGER},
+      </if>
+      <if test="record.labName != null" >
+        LAB_NAME = #{record.labName,jdbcType=VARCHAR},
+      </if>
+      <if test="record.deviceName != null" >
+        DEVICE_NAME = #{record.deviceName,jdbcType=VARCHAR},
+      </if>
+      <if test="record.testType != null" >
+        TEST_TYPE = #{record.testType,jdbcType=VARCHAR},
+      </if>
+      <if test="record.deviceNum != null" >
+        DEVICE_NUM = #{record.deviceNum,jdbcType=VARCHAR},
+      </if>
+      <if test="record.constructionPoint != null" >
+        CONSTRUCTION_POINT = #{record.constructionPoint,jdbcType=VARCHAR},
+      </if>
+      <if test="record.testDate != null" >
+        TEST_DATE = #{record.testDate,jdbcType=TIMESTAMP},
+      </if>
+      <if test="record.age != null" >
+        AGE = #{record.age,jdbcType=INTEGER},
+      </if>
+      <if test="record.deviceSize != null" >
+        DEVICE_SIZE = #{record.deviceSize,jdbcType=VARCHAR},
+      </if>
+      <if test="record.designStrength != null" >
+        DESIGN_STRENGTH = #{record.designStrength,jdbcType=VARCHAR},
+      </if>
+      <if test="record.loadOne != null" >
+        LOAD_ONE = #{record.loadOne,jdbcType=REAL},
+      </if>
+      <if test="record.loadTwo != null" >
+        LOAD_TWO = #{record.loadTwo,jdbcType=REAL},
+      </if>
+      <if test="record.loadThree != null" >
+        LOAD_THREE = #{record.loadThree,jdbcType=REAL},
+      </if>
+      <if test="record.strengthOne != null" >
+        STRENGTH_ONE = #{record.strengthOne,jdbcType=REAL},
+      </if>
+      <if test="record.strengthTwo != null" >
+        STRENGTH_TWO = #{record.strengthTwo,jdbcType=REAL},
+      </if>
+      <if test="record.strengthThree != null" >
+        STRENGTH_THREE = #{record.strengthThree,jdbcType=REAL},
+      </if>
+      <if test="record.strengthValue != null" >
+        STRENGTH_VALUE = #{record.strengthValue,jdbcType=REAL},
+      </if>
+      <if test="record.qualified != null" >
+        QUALIFIED = #{record.qualified,jdbcType=INTEGER},
+      </if>
+      <if test="record.remard != null" >
+        REMARD = #{record.remard,jdbcType=VARCHAR},
+      </if>
+      <if test="record.delete != null" >
+        DELETE = #{record.delete,jdbcType=INTEGER},
+      </if>
+    </set>
+    <if test="_parameter != null" >
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateBy" parameterType="map" >
+    <!--
+      WARNING - @mbggenerated
+    -->
+    update pressure_data
+    set ID = #{record.id,jdbcType=INTEGER},
+      TENDER_ID = #{record.tenderId,jdbcType=INTEGER},
+      LAB_NAME = #{record.labName,jdbcType=VARCHAR},
+      DEVICE_NAME = #{record.deviceName,jdbcType=VARCHAR},
+      TEST_TYPE = #{record.testType,jdbcType=VARCHAR},
+      DEVICE_NUM = #{record.deviceNum,jdbcType=VARCHAR},
+      CONSTRUCTION_POINT = #{record.constructionPoint,jdbcType=VARCHAR},
+      TEST_DATE = #{record.testDate,jdbcType=TIMESTAMP},
+      AGE = #{record.age,jdbcType=INTEGER},
+      DEVICE_SIZE = #{record.deviceSize,jdbcType=VARCHAR},
+      DESIGN_STRENGTH = #{record.designStrength,jdbcType=VARCHAR},
+      LOAD_ONE = #{record.loadOne,jdbcType=REAL},
+      LOAD_TWO = #{record.loadTwo,jdbcType=REAL},
+      LOAD_THREE = #{record.loadThree,jdbcType=REAL},
+      STRENGTH_ONE = #{record.strengthOne,jdbcType=REAL},
+      STRENGTH_TWO = #{record.strengthTwo,jdbcType=REAL},
+      STRENGTH_THREE = #{record.strengthThree,jdbcType=REAL},
+      STRENGTH_VALUE = #{record.strengthValue,jdbcType=REAL},
+      QUALIFIED = #{record.qualified,jdbcType=INTEGER},
+      REMARD = #{record.remard,jdbcType=VARCHAR},
+      DELETE = #{record.delete,jdbcType=INTEGER}
+    <if test="_parameter != null" >
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+</mapper>
