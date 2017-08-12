@@ -414,6 +414,12 @@
                                 标段配置
                             </a>
                         </li>
+                        <li>
+                            <a href="${pageContext.request.contextPath}/user/gotoUserCfg.do" target="iframe">
+                                <i class="icon-double-angle-right"></i>
+                                用户配置
+                            </a>
+                        </li>
 
                     </ul>
                 </li>
