@@ -14,13 +14,14 @@ APP.constant = {};
 
 APP.pageSize = 10;
 
-APP.User = function(id, name, account,passWord,email,type,itemId,itemName,phoneNum) {
+APP.User = function(id, name, account,passWord,email,type,typeName,itemId,itemName,phoneNum) {
     this.id = id;
     this.name = name;
     this.account=account;
     this.passWord=passWord;
     this.email = email;
     this.type=type;
+    this.typeName=typeName;
     this.itemId=itemId;
     this.phoneNum = phoneNum;
     this.itemName = itemName;
@@ -45,6 +46,23 @@ APP.ViewModel = function() {
     this.list = ko.observableArray();
 
     this.itemTypeList = ko.observableArray();
+    this.typeList=ko.observableArray();
+
+    function typeType() {
+        self.typeList([]);
+        self.typeList.push({
+            type: 0,
+            typeName :"施工单位"
+        });
+        self.typeList.push({
+            type: 1,
+            typeName :"中心实验室"
+        });
+        self.typeList.push({
+            type: 2,
+            typeName :"监理单位"
+        });
+    }
 
     function itemType(){
         self.itemTypeList([]);
@@ -78,6 +96,7 @@ APP.ViewModel = function() {
 
     this.loadUserList = function() {
         itemType();
+        typeType();
         self.list([]);
         $.ajax({
             url : APP.ctx + APP.urls.list,
@@ -91,7 +110,7 @@ APP.ViewModel = function() {
                     for (var i = 0, len = list.length; i < len; i++) {
                         var user = list[i];
                         self.list.push(new APP.User(user.id, user.name, user.account,
-                            user.passWord,user.email,user.type,user.itemId,user.itemName,user.phoneNum));
+                            user.passWord,user.email,user.type,user.typeName,user.itemId,user.itemName,user.phoneNum));
                     }
 
                 } else {
@@ -201,8 +220,9 @@ APP.ViewModel = function() {
     this.tempUser = ko.observable(new APP.User());
     this.saving = ko.observable(false);
     this.gotoUpdate = function(user) {
-        self.tempUser(new APP.User(user.id,
-            user.name, user.projectId,user.projectName,user.remark));
+        self.tempUser(new APP.User(user.id, user.name, user.account,
+            user.passWord,user.email,user.type,user.typeName,user.itemId,
+            user.itemName,user.phoneNum));
         location.hash = "update";
     };
     this.addUser = function() {
@@ -221,10 +241,14 @@ APP.ViewModel = function() {
             type : "post",
             dataType : "json",
             cache : false,
+            /*id, name, account,passWord,email,type,typeName,itemId,itemName,phoneNum*/
             data : {
                 name : sg.name,
-                remark : sg.remark,
-                projectId:sg.projectId
+                passWord:sg.passWord,
+                email:sg.email,
+                type:sg.type,
+                itemId:sg.itemId,
+                phoneNum : sg.phoneNum
             },
             success : function(data) {
                 console.log(data);
@@ -260,7 +284,7 @@ APP.ViewModel = function() {
         self.saving(true);
 
         var sg = self.tempUser();
-        console.log("修改的工程id："+sg.projectId);
+        console.log("修改的用户id："+sg.projectId);
         $.ajax({
             url : APP.ctx + APP.urls.update,
             type : "post",
@@ -268,9 +292,9 @@ APP.ViewModel = function() {
             cache : false,
             data : {
                 id : sg.id,
-                name : sg.name,
-                remark : sg.remark,
-                projectId:sg.projectId
+                passWord:sg.passWord,
+                email:sg.email,
+                phoneNum : sg.phoneNum
             },
             success : function(data) {
                 self.saving(false);
@@ -293,7 +317,7 @@ APP.ViewModel = function() {
     this.deleteUser = function(user) {
         //console.log("删除id："+project.id)
         var tip = "确定删除选中的" + (user.name)
-            + "工程么？";
+            + "用户么？";
         KS.confirm(tip, function(result) {
             if (result) {
                 $.ajax({

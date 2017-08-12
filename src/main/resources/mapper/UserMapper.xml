@@ -171,4 +171,50 @@
       <include refid="Update_By_Example_Where_Clause" />
     </if>
   </update>
+  <select  id="queryByKey" resultType="com.xmy.sms.to.UserTo">
+    select u.id,u.name,u.account,u.pass_word,u.email,u.type,u.phone_num,u.item_id,i.name itemName
+    from user u,item i
+    <where>
+      <if test="userTo.name!=null and userTo.name!=''">
+        name like CONCAT('%','${userTo.name}','%' )
+      </if>
+      <if test="userTo.account!=null and userTo.account!=''">
+        account like CONCAT('%','${userTo.account}','%' )
+      </if>
+      <if test="userTo.itemName!=null and userTo.itemName!=''">
+        and itemName like CONCAT('%','${userTo.itemName}','%' )
+      </if>
+      and u.item_id=i.id
+    </where>
+    ORDER BY i.id asc
+  </select>
+
+  <update id="updateByPrimarySelective" parameterType="com.xmy.sms.po.User">
+    update user
+    <set>
+      <if test="name != null">
+        name = #{name,jdbcType=VARCHAR},
+      </if>
+      <if test="account != null">
+        account = #{account,jdbcType=VARCHAR},
+      </if>
+      <if test="passWord != null">
+        pass_word = #{passWord,jdbcType=VARCHAR},
+      </if>
+      <if test="email != null">
+        email = #{email,jdbcType=VARCHAR},
+      </if>
+      <if test="type != null">
+        type = #{type,jdbcType=VARCHAR},
+      </if>
+      <if test="itemId != null">
+        itemId = #{itemId,jdbcType=INTEGER},
+      </if>
+      <if test="phoneNum != null">
+        phone_num = #{phoneNum,jdbcType=VARCHAR},
+      </if>
+    </set>
+    where id = #{id,jdbcType=INTEGER}
+  </update>
+
 </mapper>

@@ -9,52 +9,50 @@ public class UserTo {
     /**
      * 自增
      */
-    @Id
-    @Column(name = "ID")
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
+
     private Integer id;
 
     /**
      * 用户名
      */
-    @Column(name = "NAME")
+
     private String name;
 
     /**
      * 账号
      */
-    @Column(name = "ACCOUNT")
     private String account;
 
     /**
      * 密码
      */
-    @Column(name = "PASS_WORD")
     private String passWord;
 
     /**
      * 邮箱
      */
-    @Column(name = "EMAIL")
     private String email;
 
     /**
      * 类型
      */
-    @Column(name = "TYPE")
     private String type;
 
     /**
      * 项目编号
      */
-    @Column(name = "ITEM_ID")
     private Integer itemId;
 
     /**
      * 电话号码
      */
-    @Column(name = "PHONE_NUM")
     private String phoneNum;
+
+    private String itemName;
+
+    private String projectName;
+
+    private String typeName;
 
     /**
      * 获取自增
@@ -198,5 +196,45 @@ public class UserTo {
      */
     public void setPhoneNum(String phoneNum) {
         this.phoneNum = phoneNum;
+    }
+
+    public String getItemName() {
+        return itemName;
+    }
+
+    public void setItemName(String itemName) {
+        this.itemName = itemName;
+    }
+
+    public String getProjectName() {
+        return projectName;
+    }
+
+    public void setProjectName(String projectName) {
+        this.projectName = projectName;
+    }
+
+    public String getTypeName() {
+        return typeName;
+    }
+
+    public void setTypeName(String typeName) {
+        this.typeName = typeName;
+    }
+
+    @Override
+    public String toString() {
+        return "UserTo{" +
+                "id=" + id +
+                ", name='" + name + '\'' +
+                ", account='" + account + '\'' +
+                ", passWord='" + passWord + '\'' +
+                ", email='" + email + '\'' +
+                ", type='" + type + '\'' +
+                ", itemId=" + itemId +
+                ", phoneNum='" + phoneNum + '\'' +
+                ", itemName='" + itemName + '\'' +
+                ", projectName='" + projectName + '\'' +
+                '}';
     }
 }

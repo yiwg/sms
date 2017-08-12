@@ -2,6 +2,7 @@ package com.xmy.sms.service.impl;
 
 import com.github.pagehelper.PageHelper;
 import com.github.pagehelper.PageInfo;
+import com.xmy.sms.constant.UserTypeConstant;
 import com.xmy.sms.exception.ServiceException;
 import com.xmy.sms.mapper.UserMapper;
 import com.xmy.sms.po.User;
@@ -33,8 +34,11 @@ public class UserService extends BaseService implements IUserService {
             //分页助手
             PageHelper.startPage(page.getPageNum(),page.getPageSize());
             UserExample userExample=new UserExample();
-            //users=userMapper.queryByKey(userTo);
-            //logger.info("用户获取成功，获取用户个数:"+users.size());
+            users=userMapper.queryByKey(userTo);
+            for(UserTo user:users){
+                user.setTypeName(UserTypeConstant.map.getDescByValue(Integer.parseInt(user.getType())).toString());
+            }
+            logger.info("用户获取成功，获取用户个数:"+users.size());
         }
         catch(Exception e){
             logger.warn("用户获取成功",e);
@@ -50,8 +54,7 @@ public class UserService extends BaseService implements IUserService {
         }
         try {
             UserExample ie=new UserExample();
-            /*ie.createCriteria().andNameEqualTo(user.getName())
-                    .andProjectIdEqualTo(user.getProjectId());*/
+            ie.createCriteria().andNameEqualTo(user.getName());
             int count=userMapper.countBy(ie);
             if(count>0){
                 throw new ServiceException("用户名称已存在!");
@@ -77,13 +80,7 @@ public class UserService extends BaseService implements IUserService {
         }
         try {
             UserExample ie=new UserExample();
-            /*ie.createCriteria().andNameEqualTo(user.getName())
-                    .andProjectIdEqualTo(user.getProjectId());*/
-            int count=userMapper.countBy(ie);
-            if(count>0){
-                throw new ServiceException("用户名称已存在!");
-            }
-            userMapper.updateByPrimaryKey(user);
+            userMapper.updateByPrimarySelective(user);
             logger.info("用户更新成功:【"+user+"】");
         }
         catch(ServiceException e){

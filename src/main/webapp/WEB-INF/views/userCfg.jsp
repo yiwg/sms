@@ -94,12 +94,6 @@
 
 						<tbody class="table-body-tr" data-bind="foreach:listPage">
 						<tr >
-							<%--<td class="center">
-								<label>
-									<input type="checkbox" class="ace" />
-									<span class="lbl"></span>
-								</label>
-							</td>--%>
 
 							<td>
 								<a href="#" data-bind="text:id"></a>
@@ -109,7 +103,7 @@
 							<td data-bind="text:passWord"></td>
 							<td data-bind="text:email"></td>
 							<td data-bind="text:phoneNum"></td>
-							<td data-bind="text:type"></td>
+							<td data-bind="text:typeName"></td>
 							<td data-bind="text:itemName"></td>
 							<td>
 								<div class="visible-md visible-lg hidden-sm hidden-xs btn-group">
@@ -118,7 +112,7 @@
 										<i class="icon-edit bigger-120"></i>
 									</button>
 
-									<button class="btn btn-xs btn-danger table-data-delete" data-bind="click:  $root.deleteItem">
+									<button class="btn btn-xs btn-danger table-data-delete" data-bind="click:  $root.deleteUser">
 										<i class="icon-trash bigger-120"></i>
 									</button>
 
@@ -164,43 +158,92 @@
 			</div>
 			<div class="ks-form-content">
 				<form id="skillGroupFormId">
-					<table class="ks-form-table" data-bind="with: tempItem">
+					<table class="ks-form-table" data-bind="with: tempUser">
 						<tr>
 							<td>用户名称：</td>
+							<!-- ko if: $root.hash() == 'add' -->
 							<td>
 								<input type="text" class="ks-input" data-bind="value: name"
-									validate="required: true" placeholder="请输入工程名称" />
+									validate="required: true" placeholder="请输入用户名" />
+							</td>
+							<!-- /ko -->
+							<!-- ko if: $root.hash() == 'update' -->
+							<td>
+								<input type="text" class="ks-input" data-bind="value: name"
+									   validate="required: true" disabled="disabled" />
+							</td>
+							<!-- /ko -->
+
+							<td></td>
+						</tr>
+						<tr>
+							<td>所属项目：</td>
+							<!-- ko if: $root.hash() == 'add' -->
+							<td><select class="ks-input" style="height: 35px"
+										data-bind="value:itemId,options: $root.itemTypeList, optionsValue: 'itemId', optionsText: 'itemName'">
+							</select></td>
+							<!-- /ko -->
+							<!-- ko if: $root.hash() == 'update' -->
+							<td><select class="ks-input ks-disable" style="height: 35px"
+										data-bind="value:itemId,options: $root.itemTypeList, optionsValue: 'itemId', optionsText: 'itemName'"
+										disabled="disabled">
+							</select></td>
+							<!-- /ko -->
+						</tr>
+						<tr>
+							<td>类型：</td>
+							<!-- ko if: $root.hash() == 'add' -->
+							<td><select class="ks-input " style="height: 35px"
+										data-bind="value:type,options: $root.typeList, optionsValue: 'type', optionsText: 'typeName'">
+							</select></td>
+							<!-- /ko -->
+							<!-- ko if: $root.hash() == 'update' -->
+							<td><select class="ks-input ks-disable" style="height: 35px"
+										data-bind="value:type,options: $root.typeList, optionsValue: 'type', optionsText: 'typeName'"
+										disabled="disabled">
+							</select></td>
+							<!-- /ko -->
+						</tr>
+						<tr>
+							<td>用户密码：</td>
+							<td>
+								<input type="text" class="ks-input" data-bind="value: passWord"
+									   validate="required: true" placeholder="请输入密码" />
 							</td>
 
 							<td></td>
 						</tr>
 						<tr>
-							<td>所属工程：</td>
-							<td><select class="ks-input" style="height: 35px"
-										data-bind="value:projectId,options: $root.projectTypeList, optionsValue: 'projectId', optionsText: 'projectName'">
-							</select></td>
+							<td>手机号码：</td>
+							<td>
+								<input type="text" class="ks-input" data-bind="value: phoneNum"
+									   validate="required: true" placeholder="手机号码" />
+							</td>
+
+							<td></td>
 						</tr>
 						<tr>
-							<td>备注：</td>
+							<td>E_mail：</td>
 							<td>
-								<input
-										type="text" class="ks-input" data-bind="value: remark"
-										validate="required: true" placeholder="备注" />
-
+								<input type="text" class="ks-input" data-bind="value: email"
+									   validate="required: true" placeholder="请输入电子邮箱" />
 							</td>
+
+							<td></td>
 						</tr>
+
 						<tr>
 							<td>&nbsp;</td>
 							<td>
 								<!-- ko if: $root.hash() == 'add' -->
-								<button class="ks-button primary" data-bind="click:$root.addItem">
+								<button class="ks-button primary" data-bind="click:$root.addUser">
 									<i class="fa fa-check" data-bind="visible: !$root.saving()"></i>
 									<i class="fa fa-refresh fa-spin" data-bind="visible: $root.saving()"></i>
 									添加
 								</button>
 								<!-- /ko -->
 								<!-- ko if: $root.hash() == 'update' -->
-								<button class="ks-button primary" data-bind="click: $root.updateItem">
+								<button class="ks-button primary" data-bind="click: $root.updateUser">
 									<i class="fa fa-check" data-bind="visible: !$root.saving()"></i>
 									<i class="fa fa-refresh fa-spin" data-bind="visible: $root.saving()"></i>
 									保存
