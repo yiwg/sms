@@ -268,8 +268,8 @@
 
                     <ul class="submenu">
                         <li>
-                            <a href="${pageContext.request.contextPath}/index/pressRecord.do" target="iframe">
-                                <%--<a href="/sms/WEB-INF/views/pressRecord.jsp">--%>
+                            <a href="${pageContext.request.contextPath}/pressureData/gotoPressureData.do" target="iframe">
+                                <%--<a href="/sms/WEB-INF/views/pressureData.jsp">--%>
                                 <i class="icon-double-angle-right"></i>
                                 压力机实时数据查看
                             </a>
@@ -293,19 +293,19 @@
                             </a>
                         </li>
                         <li>
-                            <a href="pressRecord.jsp">
+                            <a href="pressureData.jsp">
                                 <i class="icon-double-angle-right"></i>
                                 沥青针入度
                             </a>
                         </li>
                         <li>
-                            <a href="pressRecord.jsp">
+                            <a href="pressureData.jsp">
                                 <i class="icon-double-angle-right"></i>
                                 沥青软换点
                             </a>
                         </li>
                         <li>
-                            <a href="pressRecord.jsp">
+                            <a href="pressureData.jsp">
                                 <i class="icon-double-angle-right"></i>
                                 马歇尔稳定度
                             </a>
@@ -324,7 +324,7 @@
                     <ul class="submenu">
                         <li>
                             <a href="#" target="iframe">
-                                <%--<a href="/sms/WEB-INF/views/pressRecord.jsp">--%>
+                                <%--<a href="/sms/WEB-INF/views/pressureData.jsp">--%>
                                 <i class="icon-double-angle-right"></i>
                                     拌合机用量查询
                             </a>
@@ -379,7 +379,7 @@
                         </li>
                         <li>
                             <a href="#" target="iframe">
-                                <%--<a href="/sms/WEB-INF/views/pressRecord.jsp">--%>
+                                <%--<a href="/sms/WEB-INF/views/pressureData.jsp">--%>
                                 <i class="icon-double-angle-right"></i>
                                     材料成本核算
                             </a>
