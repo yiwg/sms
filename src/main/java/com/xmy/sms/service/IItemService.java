@@ -20,4 +20,6 @@ public interface IItemService {
     public Item update(Item item) throws ServiceException;
 
     public void delete(Item item) throws ServiceException;
+
+    List<ItemTo> list4menu(ItemTo itemTo);
 }

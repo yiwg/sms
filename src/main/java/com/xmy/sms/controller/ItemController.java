@@ -106,4 +106,22 @@ public class ItemController extends BaseController {
         }
         return ret;
     }
+
+    @RequestMapping(value = "/list4menu")
+    @ResponseBody
+    public AjaxPo list4menu(ItemTo itemTo,HttpServletRequest request , HttpServletResponse response) {
+        if (logger.isDebugEnabled()) {
+            logger.debug("ItemController.query()，参数为:"+itemTo);
+        }
+        AjaxPo ret;
+        try{
+            List<ItemTo> itemTos=itemService.list4menu(itemTo);
+            ret=toSuccess(itemTos);
+        }
+        catch (ServiceException e){
+            logger.error("获取工程列表异常",e);
+            ret=toFail(-1,e.getMessage());
+        }
+        return ret;
+    }
 }

@@ -17,6 +17,8 @@ public class ItemTo {
 
     private String remark;
 
+    private Integer menuType;//下拉菜单中显示是项目还是标段
+
     public Integer getId() {
         return id;
     }
@@ -55,5 +57,13 @@ public class ItemTo {
 
     public void setProjectName(String projectName) {
         ProjectName = projectName;
+    }
+
+    public Integer getMenuType() {
+        return menuType;
+    }
+
+    public void setMenuType(Integer menuType) {
+        this.menuType = menuType;
     }
 }

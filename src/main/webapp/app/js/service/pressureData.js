@@ -8,23 +8,36 @@ APP.urls = {
     add : "/pressureData/add.do",
     update : "/pressureData/update.do",
     remove : "/pressureData/delete.do",
-    listItem:"/item/list.do"
+    listItem:"/item/list4menu.do"
 };
 APP.constant = {};
 
 APP.pageSize = 10;
 
-APP.User = function(id, name, account,passWord,email,type,typeName,itemId,itemName,phoneNum) {
-    this.id = id;
-    this.name = name;
-    this.account=account;
-    this.passWord=passWord;
-    this.email = email;
-    this.type=type;
-    this.typeName=typeName;
-    this.itemId=itemId;
-    this.phoneNum = phoneNum;
-    this.itemName = itemName;
+APP.User = function(id, tenderId, labName,deviceName,testType,
+                    deviceNum,constructionPoint,testDate,age,deviceSize,
+                    designStrength,loadOne,loadTwo,loadThree,strengthOne,
+                    strengthTwo,strengthThree,strengthValue,qualified,remard) {
+    this.id=id;
+    this.tenderId=tenderId;
+    this.labName=labName;
+    this.deviceName=deviceName;
+    this.testType=testType;
+    this.deviceNum=deviceNum;
+    this.constructionPoint=constructionPoint;
+    this.testDate=testDate;
+    this.age=age;
+    this.deviceSize=deviceSize;
+    this.designStrength=designStrength;
+    this.loadOne=loadOne;
+    this.loadTwo=loadTwo;
+    this.loadThree=loadThree;
+    this.strengthOne=strengthOne;
+    this.strengthTwo=strengthTwo;
+    this.strengthThree=strengthThree;
+    this.strengthValue=strengthValue;
+    this.qualified=qualified;
+    this.remard=remard;
 };
 
 APP.ViewModel = function() {
@@ -64,7 +77,7 @@ APP.ViewModel = function() {
         });
     }
 
-    function itemType(){
+    function itemList(){
         self.itemTypeList([]);
         $.ajax({
             url : APP.ctx + APP.urls.listItem,
@@ -76,6 +89,11 @@ APP.ViewModel = function() {
                 if (data.success) {
                     var lis = data.obj;
                     for(var i=0;i<lis.length;i++){
+                        if(lis[i].menuType==1){
+                            lis[i].name='\b'+lis[i].name
+                        }else {
+                            lis[i].name=""+lis[i].name
+                        }
                         self.itemTypeList.push({
                             itemId: lis[i].id,
                             itemName : lis[i].name
@@ -94,9 +112,9 @@ APP.ViewModel = function() {
         });
     }
 
-    this.loadUserList = function() {
-        itemType();
-        typeType();
+    this.loadDataList = function() {
+        itemList();
+        //typeType();
         self.list([]);
         $.ajax({
             url : APP.ctx + APP.urls.list,
@@ -109,8 +127,10 @@ APP.ViewModel = function() {
                     var list = data.obj;
                     for (var i = 0, len = list.length; i < len; i++) {
                         var pressureData = list[i];
-                        self.list.push(new APP.User(pressureData.id, pressureData.name, pressureData.account,
-                            pressureData.passWord,pressureData.email,pressureData.type,pressureData.typeName,pressureData.itemId,pressureData.itemName,pressureData.phoneNum));
+                        self.list.push(new APP.User(pressureData.id, pressureData.tenderId, pressureData.labName,pressureData.deviceName,pressureData.testType,
+                            pressureData.deviceNum,pressureData.constructionPoint,pressureData.testDate,pressureData.age,pressureData.deviceSize,
+                            pressureData.designStrength,pressureData.loadOne,pressureData.loadTwo,pressureData.loadThree,pressureData.strengthOne,
+                            pressureData.strengthTwo,pressureData.strengthThree,pressureData.strengthValue,pressureData.qualified,pressureData.remard));
                     }
 
                 } else {
@@ -256,7 +276,7 @@ APP.ViewModel = function() {
                 if (data.success) {
                     KS.alert("添加成功！");
                     self.gotoList();
-                    self.loadUserList();
+                    self.loadDataList();
                 } else {
                     // TODO 添加失败
                     KS.alert(data.msg);
@@ -301,7 +321,7 @@ APP.ViewModel = function() {
                 if (data.success) {
                     KS.alert("修改成功！");
                     self.gotoList();
-                    self.loadUserList();
+                    self.loadDataList();
                 } else {
                     // TODO 修改失败
                     KS.alert(data.msg);
@@ -331,7 +351,7 @@ APP.ViewModel = function() {
                     success : function(data) {
                         if (data.success) {
                             KS.alert("删除成功！");
-                            self.loadUserList();
+                            self.loadDataList();
                         } else {
                             // TODO 删除失败
                             KS.alert("删除失败！");
@@ -350,5 +370,5 @@ APP.ViewModel = function() {
 $(function() {
     APP.vm = new APP.ViewModel();
     ko.applyBindings(APP.vm);
-    APP.vm.loadUserList();
+    APP.vm.loadDataList();
 });

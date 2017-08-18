@@ -64,13 +64,173 @@
 	<div class="page-content">
 				<!-- PAGE CONTENT BEGINS -->
 		<div class="row" data-bind="visible: hash() == 'list'">
-			<div class="ks-button-group" data-bind="click: gotoAdd">
+			<%--<div class="ks-button-group" data-bind="click: gotoAdd">
 				<span class="primary"><span class="glyphicon glyphicon-plus"></span></span>
 				添加压力机数据
-			</div>
+			</div>--%>
 
 			<div class="col-xs-12">
 				<div class="table-responsive">
+						<div class="row">
+							<div class="col-xs-2 column">
+								<div class="row">
+									<div class="col-xs-4 column">
+										<label for="form-field-select-1">项目名称</label>
+									</div>
+									<div class="col-xs-8 column">
+										<select class="ks-input form-control" style="height: 35px"
+												data-bind="options: $root.itemTypeList, optionsValue: 'itemId', optionsText: 'itemName'">
+										</select>
+									</div>
+								</div>
+							</div>
+							<div class="col-xs-2 column">
+								<div class="row">
+									<div class="col-xs-4 column">
+										<label for="form-field-select-1">试验室名称</label>
+									</div>
+									<div class="col-xs-8 column">
+										<select class="form-control"  id="form-field-select-2">
+											<option value="">工程部</option>
+											<option value="AL">实施部</option>
+										</select>
+									</div>
+								</div>
+							</div>
+							<div class="col-xs-2 column">
+								<div class="row">
+									<div class="col-xs-4 column">
+										<label for="form-field-select-1">设备名称</label>
+									</div>
+									<div class="col-xs-8 column">
+										<select class="form-control"  id="form-field-select-3">
+											<option value="">工程部</option>
+											<option value="AL">实施部</option>
+										</select>
+									</div>
+								</div>
+							</div>
+							<div class="col-xs-2 column">
+								<div class="row">
+									<div class="col-xs-4 column">
+										<label for="form-field-select-1">实验类型</label>
+									</div>
+									<div class="col-xs-8 column">
+										<select class="form-control"  id="form-field-select-4">
+											<option value="">工程部</option>
+											<option value="AL">实施部</option>
+										</select>
+									</div>
+								</div>
+							</div>
+							<div class="col-xs-2 column">
+								<div class="row">
+									<div class="col-xs-4 column">
+										<label for="form-field-select-1">器件编号</label>
+									</div>
+									<div class="col-xs-8 column">
+										<select class="form-control"  id="form-field-select-5">
+											<option value="">工程部</option>
+											<option value="AL">实施部</option>
+										</select>
+									</div>
+								</div>
+							</div>
+							<div class="col-xs-2 column">
+								<div class="row">
+									<div class="col-xs-4 column">
+										<label for="form-field-select-1">龄期</label>
+									</div>
+									<div class="col-xs-8 column">
+										<select class="form-control"  id="form-field-select-6">
+											<option value="">工程部</option>
+											<option value="AL">实施部</option>
+										</select>
+									</div>
+								</div>
+							</div>
+						</div>
+						<div class="row">
+							<div class="col-xs-2 column">
+								<div class="row">
+									<div class="col-xs-4 column">
+										<label for="form-field-select-1">施工部位</label>
+									</div>
+									<div class="col-xs-8 column">
+										<select class="form-control"  id="form-field-select-7">
+											<option value="">工程部</option>
+											<option value="AL">实施部</option>
+										</select>
+									</div>
+								</div>
+							</div>
+							<div class="col-xs-2 column">
+								<div class="row">
+									<div class="col-xs-4 column">
+										<label for="form-field-select-1">强度设计</label>
+									</div>
+									<div class="col-xs-8 column">
+										<select class="form-control"  id="form-field-select-8">
+											<option value="">工程部</option>
+											<option value="AL">实施部</option>
+										</select>
+									</div>
+								</div>
+							</div>
+							<div class="col-xs-2 column">
+								<div class="row">
+									<div class="col-xs-4 column">
+										<label for="form-field-select-1">评定结果</label>
+									</div>
+									<div class="col-xs-8 column">
+										<select class="form-control"  id="form-field-select-9">
+											<option value="">工程部</option>
+											<option value="AL">实施部</option>
+										</select>
+									</div>
+								</div>
+							</div>
+							<div class="col-xs-2 column">
+								<div class="row">
+									<div class="col-xs-4 column">
+										<label for="form-field-select-1">开始时间</label>
+									</div>
+									<div class="col-xs-8 column">
+										<select class="form-control"  id="form-field-select-10">
+											<option value="">工程部</option>
+											<option value="AL">实施部</option>
+										</select>
+									</div>
+								</div>
+							</div>
+							<div class="col-xs-2 column">
+								<div class="row">
+									<div class="col-xs-4 column">
+										<label for="form-field-select-1">结束时间</label>
+									</div>
+									<div class="col-xs-8 column">
+										<select class="form-control"  id="form-field-select-11">
+											<option value="">工程部</option>
+											<option value="AL">实施部</option>
+										</select>
+									</div>
+								</div>
+							</div>
+							<div class="col-xs-2 column">
+								<button class="btn btn-sm btn-success">
+									<i class="icon-ok"></i>
+									查询
+								</button>
+								<button class="btn btn-sm btn-info">
+									<i class="glyphicon glyphicon-repeat"></i>
+									重置
+								</button>
+								<button class="btn btn-sm btn-primary">
+									<i class="glyphicon glyphicon-share-alt"></i>
+									导出
+								</button>
+							</div>
+					</div>
 					<table id="sample-table-1" class="table table-striped table-bordered table-hover ks-table">
 						<thead>
 						<tr>
@@ -99,7 +259,7 @@
 						</thead>
 
 						<tbody class="table-body-tr" data-bind="foreach:listPage">
-						<tr >
+						<p >
 
 							<td>
 								<a href="#" data-bind="text:id"></a>
@@ -114,16 +274,24 @@
 							<td data-bind="text:deviceSize"></td>
 							<td data-bind="text:designStrength"></td>
 							<td>
-								<tr data-bind="text:loadOne">
-								</tr>
-								<tr data-bind="text:loadTwo">
-								</tr>
-								<tr data-bind="text:loadThree">
-								</tr>
+								<p data-bind="text:loadOne">
+								</p>
+								<p data-bind="text:loadTwo">
+								</p>
+								<p data-bind="text:loadThree">
+								</p>
 							</td>
-							<td ></td>
+							<td>
+								<p data-bind="text:strengthOne">
+								</p>
+								<p data-bind="text:strengthTwo">
+								</p>
+								<p data-bind="text:strengthThree">
+								</p>
+							</td>
 							<td></td>
-							<td></td>
+							<td data-bind="text:strengthValue"></td>
+							<td data-bind="text:qualified"></td>
 							<%--<td>
 								<div class="visible-md visible-lg hidden-sm hidden-xs btn-group">
 
@@ -160,7 +328,7 @@
 
 		</div><!-- /row -->
 </div>
-	<div style="display: none;"
+	<%--<div style="display: none;"
 		 data-bind="visible: hash() == 'add' || hash() == 'update'">
 		<div class="ks-form">
 			<div class="ks-form-header">
@@ -277,6 +445,6 @@
 				</form>
 			</div>
 		</div>
-	</div>
+	</div>--%>
 </body>
 </html>
