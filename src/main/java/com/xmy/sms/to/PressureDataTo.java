@@ -14,6 +14,8 @@ public class PressureDataTo {
      */
     private Integer tenderId;
 
+    private Integer tenderType;//tenderType->1 项目id  tenderType->0 标段id
+
     /**
      * 试验室名称
      */
@@ -485,5 +487,13 @@ public class PressureDataTo {
      */
     public void setDelete(Integer delete) {
         this.delete = delete;
+    }
+
+    public Integer getTenderType() {
+        return tenderType;
+    }
+
+    public void setTenderType(Integer tenderType) {
+        this.tenderType = tenderType;
     }
 }

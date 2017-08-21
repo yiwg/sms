@@ -1,5 +1,6 @@
 package com.xmy.sms.controller;
 
+import com.alibaba.fastjson.JSON;
 import com.github.pagehelper.Page;
 import com.github.pagehelper.PageInfo;
 import com.xmy.sms.exception.ServiceException;
@@ -18,6 +19,7 @@ import org.springframework.web.bind.annotation.ResponseBody;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import java.util.List;
+import java.util.Map;
 
 /**
  * Created by yiwg on 2017/7/22.
@@ -103,6 +105,25 @@ public class PressureDataController extends BaseController {
         }
         catch (ServiceException e){
             logger.error("删除：",e);
+            ret=toFail(-1,e.getMessage());
+        }
+        return ret;
+    }
+
+    @RequestMapping(value = "/getOptions")
+    @ResponseBody
+    public AjaxPo getOptions(int id,int type, HttpServletRequest request , HttpServletResponse response) {
+        if (logger.isDebugEnabled()) {
+            logger.debug("PressureDataController.getOptions()，参数为:");
+        }
+        AjaxPo ret;
+        try{
+            Map<String,List<Object>> options=dataService.getOptions(id,type);
+
+            ret=toSuccess(options);
+        }
+        catch (ServiceException e){
+            logger.error("获取用户列表异常",e);
             ret=toFail(-1,e.getMessage());
         }
         return ret;

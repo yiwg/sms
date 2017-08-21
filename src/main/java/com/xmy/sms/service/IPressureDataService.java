@@ -6,6 +6,7 @@ import com.xmy.sms.po.PressureData;
 import com.xmy.sms.to.PressureDataTo;
 
 import java.util.List;
+import java.util.Map;
 
 /**
  * Created by yiwg on 2017/7/22.
@@ -19,4 +20,6 @@ public interface IPressureDataService {
     public PressureData update(PressureData data) throws ServiceException;
 
     public void delete(PressureData data) throws ServiceException;
+
+    public Map<String,List<Object>> getOptions(int id,int type);
 }

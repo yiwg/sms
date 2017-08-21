@@ -8,13 +8,14 @@ APP.urls = {
     add : "/pressureData/add.do",
     update : "/pressureData/update.do",
     remove : "/pressureData/delete.do",
-    listItem:"/item/list4menu.do"
+    listItem:"/item/list4menu.do",
+    getOptions:"/pressureData/getOptions.do"
 };
 APP.constant = {};
 
 APP.pageSize = 10;
 
-APP.User = function(id, tenderId, labName,deviceName,testType,
+APP.PData = function(id, tenderId, labName,deviceName,testType,
                     deviceNum,constructionPoint,testDate,age,deviceSize,
                     designStrength,loadOne,loadTwo,loadThree,strengthOne,
                     strengthTwo,strengthThree,strengthValue,qualified,remard) {
@@ -60,6 +61,16 @@ APP.ViewModel = function() {
 
     this.itemTypeList = ko.observableArray();
     this.typeList=ko.observableArray();
+    this.tempPData = ko.observable(new APP.PData());
+
+    this.labNameOptions=ko.observableArray();
+    this.testTypeOptions=ko.observableArray();
+    this.deviceNameOptions=ko.observableArray();
+    this.deviceNumOptions=ko.observableArray();
+    this.ageOptions=ko.observableArray();
+    this.constructionPointOptions=ko.observableArray();
+    this.designStrengthOptions=ko.observableArray();
+    this.qualifiedOptions=ko.observableArray();
 
     function typeType() {
         self.typeList([]);
@@ -77,6 +88,9 @@ APP.ViewModel = function() {
         });
     }
 
+    this.itemList=function () {
+        itemList();
+    }
     function itemList(){
         self.itemTypeList([]);
         $.ajax({
@@ -91,8 +105,10 @@ APP.ViewModel = function() {
                     for(var i=0;i<lis.length;i++){
                         if(lis[i].menuType==1){
                             lis[i].name='\b'+lis[i].name
+                            lis[i].id ='1:'+lis[i].id
                         }else {
                             lis[i].name=""+lis[i].name
+                            lis[i].id="0:"+lis[i].id
                         }
                         self.itemTypeList.push({
                             itemId: lis[i].id,
@@ -111,23 +127,171 @@ APP.ViewModel = function() {
             }
         });
     }
+    
+    this.getOptions=function (pData) {
+        console.log("选中的选项是："+pData.tenderId);
+        var id=pData.tenderId.split(':')[1];
+        var type=pData.tenderId.split(':')[0];
+        $.ajax({
+            url : APP.ctx + APP.urls.getOptions,
+            type : "get",
+            dataType : "json",
+            cache : false,
+            data : {
+                id:id,
+                type:type
+            },
+            success : function(data) {
+                if (data.success) {
+                    var map =(data.obj);
+                    self.labNameOptions.removeAll();
+                    self.deviceNameOptions.removeAll();
+                    self.testTypeOptions.removeAll();
+                    self.deviceNumOptions.removeAll();
+                    self.ageOptions.removeAll();
+                    self.constructionPointOptions.removeAll();
+                    self.designStrengthOptions.removeAll();
+                    self.qualifiedOptions.removeAll();
+                    var list=map["labName"];
+                    self.labNameOptions.push({
+                        itemId: "",
+                        itemName : "请选择"
+                    });
+                    for (var i = 0, len = list.length; i < len; i++) {
+                        self.labNameOptions.push({
+                            itemId: list[i],
+                            itemName : list[i]
+                        });
+                    }
 
-    this.loadDataList = function() {
-        itemList();
+                    var list=map["deviceName"];
+                    self.deviceNameOptions.push({
+                        itemId: "",
+                        itemName : "请选择"
+                    });
+                    for (var i = 0, len = list.length; i < len; i++) {
+                        self.deviceNameOptions.push({
+                            itemId: list[i],
+                            itemName : list[i]
+                        });
+                    }
+
+                    var list=map["testType"];
+                    self.testTypeOptions.push({
+                        itemId: "",
+                        itemName : "请选择"
+                    });
+                    for (var i = 0, len = list.length; i < len; i++) {
+                        self.testTypeOptions.push({
+                            itemId: list[i],
+                            itemName : list[i]
+                        });
+                    }
+
+                    var list=map["deviceNum"];
+                    self.deviceNumOptions.push({
+                        itemId: "",
+                        itemName : "请选择"
+                    });
+                    for (var i = 0, len = list.length; i < len; i++) {
+                        self.deviceNumOptions.push({
+                            itemId: list[i],
+                            itemName : list[i]
+                        });
+                    }
+
+                    var list=map["age"];
+                    self.ageOptions.push({
+                        itemId: "",
+                        itemName : "请选择"
+                    });
+                    for (var i = 0, len = list.length; i < len; i++) {
+                        self.ageOptions.push({
+                            itemId: list[i],
+                            itemName : list[i]
+                        });
+                    }
+
+                    var list=map["constructionPoint"];
+                    self.constructionPointOptions.push({
+                        itemId: "",
+                        itemName : "请选择"
+                    });
+                    for (var i = 0, len = list.length; i < len; i++) {
+                        self.constructionPointOptions.push({
+                            itemId: list[i],
+                            itemName : list[i]
+                        });
+                    }
+
+                    var list=map["designStrength"];
+                    self.designStrengthOptions.push({
+                        itemId: "",
+                        itemName : "请选择"
+                    });
+                    for (var i = 0, len = list.length; i < len; i++) {
+                        self.designStrengthOptions.push({
+                            itemId: list[i],
+                            itemName : list[i]
+                        });
+                    }
+                    self.qualifiedOptions.push({
+                        itemId: "",
+                        itemName : "请选择"
+                    });
+                    self.qualifiedOptions.push({
+                        itemId: '1',
+                        itemName : "合格"
+                    });
+                    self.qualifiedOptions.push({
+                        itemId: '0',
+                        itemName : "不合格"
+                    });
+                    //qualified
+
+                } else {
+                    // TODO 查询失败
+                    KS.alert("查询失败！");
+                }
+            },
+            error : function() {
+                // TODO 查询失败
+                KS.alert("查询失败！");
+            }
+        });
+    }
+    this.loadDataList = function(pData) {
+        /*if(self.itemTypeList.length<=0){
+            itemList();
+        }*/
         //typeType();
         self.list([]);
+        console.log("item id:"+pData.tenderId)
+        var tenderId=pData.tenderId.split(':')[1];
+        var tenderType=pData.tenderId.split(':')[0];
         $.ajax({
             url : APP.ctx + APP.urls.list,
             type : "get",
             dataType : "json",
             cache : false,
-            data : {},
+            data : {
+                tenderId:tenderId,
+                tenderType:tenderType,
+                labName:pData.labName,
+                deviceName:pData.deviceName,
+                testType:pData.testType,
+                deviceNum:pData.deviceNum,
+                constructionPoint:pData.constructionPoint,
+                age:pData.age,
+                designStrength:pData.designStrength,
+                qualified:pData.qualified
+            },
             success : function(data) {
                 if (data.success) {
                     var list = data.obj;
                     for (var i = 0, len = list.length; i < len; i++) {
                         var pressureData = list[i];
-                        self.list.push(new APP.User(pressureData.id, pressureData.tenderId, pressureData.labName,pressureData.deviceName,pressureData.testType,
+                        self.list.push(new APP.PData(pressureData.id, pressureData.tenderId, pressureData.labName,pressureData.deviceName,pressureData.testType,
                             pressureData.deviceNum,pressureData.constructionPoint,pressureData.testDate,pressureData.age,pressureData.deviceSize,
                             pressureData.designStrength,pressureData.loadOne,pressureData.loadTwo,pressureData.loadThree,pressureData.strengthOne,
                             pressureData.strengthTwo,pressureData.strengthThree,pressureData.strengthValue,pressureData.qualified,pressureData.remard));
@@ -237,15 +401,15 @@ APP.ViewModel = function() {
     this.gotoList = function() {
         location.hash = "list";
     };
-    this.tempUser = ko.observable(new APP.User());
+    this.tempPData = ko.observable(new APP.PData());
     this.saving = ko.observable(false);
     this.gotoUpdate = function(pressureData) {
-        self.tempUser(new APP.User(pressureData.id, pressureData.name, pressureData.account,
+        self.tempPData(new APP.PData(pressureData.id, pressureData.name, pressureData.account,
             pressureData.passWord,pressureData.email,pressureData.type,pressureData.typeName,pressureData.itemId,
             pressureData.itemName,pressureData.phoneNum));
         location.hash = "update";
     };
-    this.addUser = function() {
+    this.addPData = function() {
         // 初始化
         $("#skillGroupFormId").initValidate();
         // 添加校验
@@ -255,7 +419,7 @@ APP.ViewModel = function() {
 
         self.saving(true);
 
-        var sg = self.tempUser();
+        var sg = self.tempPData();
         $.ajax({
             url : APP.ctx + APP.urls.add,
             type : "post",
@@ -293,7 +457,7 @@ APP.ViewModel = function() {
     /**
      * 修改技能组
      */
-    this.updateUser = function() {
+    this.updatePData = function() {
         // 初始化
         $("#skillGroupFormId").initValidate();
         // 添加校验
@@ -303,7 +467,7 @@ APP.ViewModel = function() {
 
         self.saving(true);
 
-        var sg = self.tempUser();
+        var sg = self.tempPData();
         console.log("修改的压力机数据id："+sg.projectId);
         $.ajax({
             url : APP.ctx + APP.urls.update,
@@ -334,7 +498,7 @@ APP.ViewModel = function() {
             }
         });
     };
-    this.deleteUser = function(pressureData) {
+    this.deletePData = function(pressureData) {
         //console.log("删除id："+project.id)
         var tip = "确定删除选中的" + (pressureData.name)
             + "压力机数据么？";
@@ -370,5 +534,6 @@ APP.ViewModel = function() {
 $(function() {
     APP.vm = new APP.ViewModel();
     ko.applyBindings(APP.vm);
-    APP.vm.loadDataList();
+    //APP.vm.loadDataList();
+    APP.vm.itemList();
 });

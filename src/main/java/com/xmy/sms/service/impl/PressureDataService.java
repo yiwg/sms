@@ -12,7 +12,10 @@ import com.xmy.sms.to.PressureDataTo;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 /**
  * Created by yiwg on 2017/7/22.
@@ -113,6 +116,44 @@ public class PressureDataService extends BaseService implements IPressureDataSer
             logger.warn("删除异常",e);
             throw new ServiceException("压力数据删除异常");
         }
+    }
+
+    @Override
+    public Map<String, List<Object>> getOptions(int id, int type) {
+        if(logger.isDebugEnabled()){
+            logger.debug("PressureDataService.getOptions()方法");
+        }
+        List<Object> option=null;
+        List<Integer> ids=null;
+        Map<String, List<Object>> result=new HashMap<>();
+        try {
+            option=new ArrayList<>();
+            option=dataMapper.getLabNames(id,type);
+            result.put("labName",option);
+            option=new ArrayList<>();
+            option=dataMapper.getDeviceNames(id,type);
+            result.put("deviceName",option);
+            option=new ArrayList<>();
+            option=dataMapper.getTestTypes(id,type);
+            result.put("testType",option);
+            option=new ArrayList<>();
+            option=dataMapper.getDeviceNums(id,type);
+            result.put("deviceNum",option);
+            option=new ArrayList<>();
+            option=dataMapper.getAges(id,type);
+            result.put("age",option);
+            option=new ArrayList<>();
+            option=dataMapper.getConstructionPoints(id,type);
+            result.put("constructionPoint",option);
+            option=new ArrayList<>();
+            option=dataMapper.getDesignStrengths(id,type);
+            result.put("designStrength",option);
+        }
+        catch(Exception e){
+            logger.warn("Option获取成功",e);
+            throw new ServiceException("Option获取异常");
+        }
+        return result;
     }
 
 }

@@ -246,42 +246,129 @@
     from pressure_data p
     <where>
       <if test="dataTo.id!=null and dataTo.id!=''">
-        id like CONCAT('%','${dataTo.id}','%' )
+        and id =#{dataTo.id}
       </if>
-      <if test="dataTo.tenderId!=null and dataTo.tenderId!=''">
-        TENDER_ID like CONCAT('%','${dataTo.tenderId}','%' )
+      <if test="dataTo.tenderId!=null and dataTo.tenderId!='' and dataTo.tenderType==0">
+        and TENDER_ID IN (SELECT ID from tender where ITEM_ID= #{dataTo.tenderId})
+      </if>
+      <if test="dataTo.tenderId!=null and dataTo.tenderId!='' and dataTo.tenderType==1">
+        and TENDER_ID=#{dataTo.tenderId}
       </if>
       <if test="dataTo.labName!=null and dataTo.labName!=''">
-        and LAB_NAME like CONCAT('%','${dataTo.labName}','%' )
+       and LAB_NAME =#{dataTo.labName}
       </if>
       <if test="dataTo.deviceName!=null and dataTo.deviceName!=''">
-        DEVICE_NAME like CONCAT('%','${dataTo.deviceName}','%' )
+        and DEVICE_NAME = #{dataTo.deviceName}
       </if>
       <if test="dataTo.testType!=null and dataTo.testType!=''">
-        TEST_TYPE like CONCAT('%','${dataTo.testType}','%' )
+        and TEST_TYPE =#{dataTo.testType}
       </if>
       <if test="dataTo.deviceNum!=null and dataTo.deviceNum!=''">
-        and DEVICE_NUM like CONCAT('%','${dataTo.deviceNum}','%' )
+        and DEVICE_NUM= #{dataTo.deviceNum}
       </if>
       <if test="dataTo.constructionPoint!=null and dataTo.constructionPoint!=''">
-        CONSTRUCTION_POINT like CONCAT('%','${dataTo.constructionPoint}','%' )
+        and CONSTRUCTION_POINT = #{dataTo.constructionPoint}
       </if>
       <if test="dataTo.testDate!=null and dataTo.testDate!=''">
-        TEST_DATE like CONCAT('%','${dataTo.testDate}','%' )
+        and TEST_DATE like CONCAT('%','${dataTo.testDate}','%' )
       </if>
       <if test="dataTo.age!=null and dataTo.age!=''">
-        AGE like CONCAT('%','${dataTo.age}','%' )
+        and AGE = #{dataTo.age}
       </if>
       <if test="dataTo.deviceSize!=null and dataTo.deviceSize!=''">
-        DEVICE_SIZE like CONCAT('%','${dataTo.deviceSize}','%' )
+        and DEVICE_SIZE like CONCAT('%','${dataTo.deviceSize}','%' )
       </if>
       <if test="dataTo.designStrength!=null and dataTo.designStrength!=''">
-        DESIGN_STRENGTH like CONCAT('%','${dataTo.designStrength}','%' )
+        and DESIGN_STRENGTH = #{dataTo.designStrength}
       </if>
       <if test="dataTo.qualified!=null and dataTo.qualified!=''">
-        QUALIFIED like CONCAT('%','${dataTo.qualified}','%' )
+        and QUALIFIED = #{dataTo.qualified}
       </if>
     </where>
     ORDER BY p.id asc
+  </select>
+
+  <select id="getLabNames" resultType="java.lang.Object">
+    select distinct LAB_NAME from pressure_data
+    <where>
+      <if test="type==0">
+        TENDER_ID IN (SELECT ID from tender where ITEM_ID= #{id})
+      </if>
+      <if test="type==1">
+        TENDER_ID=#{id}
+      </if>
+    </where>
+  </select>
+
+  <select id="getDeviceNames" resultType="java.lang.Object">
+    select distinct DEVICE_NAME from pressure_data
+    <where>
+      <if test="type==0">
+        TENDER_ID IN (SELECT ID from tender where ITEM_ID= #{id})
+      </if>
+      <if test="type==1">
+        TENDER_ID=#{id}
+      </if>
+    </where>
+  </select>
+
+  <select id="getTestTypes" resultType="java.lang.Object">
+    select distinct TEST_TYPE from pressure_data
+    <where>
+      <if test="type==0">
+        TENDER_ID IN (SELECT ID from tender where ITEM_ID= #{id})
+      </if>
+      <if test="type==1">
+        TENDER_ID=#{id}
+      </if>
+    </where>
+  </select>
+
+  <select id="getDeviceNums" resultType="java.lang.Object">
+    select distinct DEVICE_NUM from pressure_data
+    <where>
+      <if test="type==0">
+        TENDER_ID IN (SELECT ID from tender where ITEM_ID= #{id})
+      </if>
+      <if test="type==1">
+        TENDER_ID=#{id}
+      </if>
+    </where>
+  </select>
+
+  <select id="getAges" resultType="java.lang.Object">
+    select distinct AGE from pressure_data
+    <where>
+      <if test="type==0">
+        TENDER_ID IN (SELECT ID from tender where ITEM_ID= #{id})
+      </if>
+      <if test="type==1">
+        TENDER_ID=#{id}
+      </if>
+    </where>
+  </select>
+
+  <select id="getConstructionPoints" resultType="java.lang.Object">
+    select distinct CONSTRUCTION_POINT from pressure_data
+    <where>
+      <if test="type==0">
+        TENDER_ID IN (SELECT ID from tender where ITEM_ID= #{id})
+      </if>
+      <if test="type==1">
+        TENDER_ID=#{id}
+      </if>
+    </where>
+  </select>
+
+  <select id="getDesignStrengths" resultType="java.lang.Object">
+    select distinct DESIGN_STRENGTH from pressure_data
+    <where>
+      <if test="type==0">
+        TENDER_ID IN (SELECT ID from tender where ITEM_ID= #{id})
+      </if>
+      <if test="type==1">
+        TENDER_ID=#{id}
+      </if>
+    </where>
   </select>
 </mapper>
