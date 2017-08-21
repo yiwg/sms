@@ -1,0 +1,216 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.xmy.sms.mapper.OverproofMapper" >
+  <resultMap id="BaseResultMap" type="com.xmy.sms.po.Overproof" >
+    <!--
+      WARNING - @mbggenerated
+    -->
+    <id column="ID" property="id" jdbcType="INTEGER" />
+    <result column="DATA_ID" property="dataId" jdbcType="INTEGER" />
+    <result column="TENDER_ID" property="tenderId" jdbcType="INTEGER" />
+    <result column="BUILD_MSG" property="buildMsg" jdbcType="VARCHAR" />
+    <result column="BUILD_STAFF" property="buildStaff" jdbcType="VARCHAR" />
+    <result column="BUILD_DATE" property="buildDate" jdbcType="TIMESTAMP" />
+    <result column="TEST_MSG" property="testMsg" jdbcType="VARCHAR" />
+    <result column="TEST_STAFF" property="testStaff" jdbcType="VARCHAR" />
+    <result column="TEST_DATE" property="testDate" jdbcType="TIMESTAMP" />
+    <result column="SUPERVISOR_MSG" property="supervisorMsg" jdbcType="VARCHAR" />
+    <result column="SUPERVISOR_STAFF" property="supervisorStaff" jdbcType="VARCHAR" />
+    <result column="SUPERVISOR_DATE" property="supervisorDate" jdbcType="TIMESTAMP" />
+    <result column="MSG_NUM" property="msgNum" jdbcType="VARCHAR" />
+    <result column="IS_DEAL" property="isDeal" jdbcType="INTEGER" />
+    <result column="IS_WARM" property="isWarm" jdbcType="INTEGER" />
+    <result column="DATA_TYPE" property="dataType" jdbcType="INTEGER" />
+  </resultMap>
+  <sql id="Example_Where_Clause" >
+    <!--
+      WARNING - @mbggenerated
+    -->
+    <where >
+      <foreach collection="oredCriteria" item="criteria" separator="or" >
+        <if test="criteria.valid" >
+          <trim prefix="(" suffix=")" prefixOverrides="and" >
+            <foreach collection="criteria.criteria" item="criterion" >
+              <choose >
+                <when test="criterion.noValue" >
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue" >
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue" >
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue" >
+                  and ${criterion.condition}
+                  <foreach collection="criterion.value" item="listItem" open="(" close=")" separator="," >
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Update_By_Example_Where_Clause" >
+    <!--
+      WARNING - @mbggenerated
+    -->
+    <where >
+      <foreach collection="example.oredCriteria" item="criteria" separator="or" >
+        <if test="criteria.valid" >
+          <trim prefix="(" suffix=")" prefixOverrides="and" >
+            <foreach collection="criteria.criteria" item="criterion" >
+              <choose >
+                <when test="criterion.noValue" >
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue" >
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue" >
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue" >
+                  and ${criterion.condition}
+                  <foreach collection="criterion.value" item="listItem" open="(" close=")" separator="," >
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Base_Column_List" >
+    <!--
+      WARNING - @mbggenerated
+    -->
+    ID, DATA_ID, TENDER_ID, BUILD_MSG, BUILD_STAFF, BUILD_DATE, TEST_MSG, TEST_STAFF, 
+    TEST_DATE, SUPERVISOR_MSG, SUPERVISOR_STAFF, SUPERVISOR_DATE, MSG_NUM, IS_DEAL, IS_WARM, 
+    DATA_TYPE
+  </sql>
+  <select id="selectBy" resultMap="BaseResultMap" parameterType="com.xmy.sms.po.OverproofExample" >
+    <!--
+      WARNING - @mbggenerated
+    -->
+    select
+    <if test="distinct" >
+      distinct
+    </if>
+    <include refid="Base_Column_List" />
+    from overproof
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+    <if test="orderByClause != null" >
+      order by ${orderByClause}
+    </if>
+  </select>
+  <delete id="deleteBy" parameterType="com.xmy.sms.po.OverproofExample" >
+    <!--
+      WARNING - @mbggenerated
+    -->
+    delete from overproof
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+  </delete>
+  <select id="countBy" parameterType="com.xmy.sms.po.OverproofExample" resultType="java.lang.Integer" >
+    <!--
+      WARNING - @mbggenerated
+    -->
+    select count(*) from overproof
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+  </select>
+  <update id="updateBySelective" parameterType="map" >
+    <!--
+      WARNING - @mbggenerated
+    -->
+    update overproof
+    <set >
+      <if test="record.id != null" >
+        ID = #{record.id,jdbcType=INTEGER},
+      </if>
+      <if test="record.dataId != null" >
+        DATA_ID = #{record.dataId,jdbcType=INTEGER},
+      </if>
+      <if test="record.tenderId != null" >
+        TENDER_ID = #{record.tenderId,jdbcType=INTEGER},
+      </if>
+      <if test="record.buildMsg != null" >
+        BUILD_MSG = #{record.buildMsg,jdbcType=VARCHAR},
+      </if>
+      <if test="record.buildStaff != null" >
+        BUILD_STAFF = #{record.buildStaff,jdbcType=VARCHAR},
+      </if>
+      <if test="record.buildDate != null" >
+        BUILD_DATE = #{record.buildDate,jdbcType=TIMESTAMP},
+      </if>
+      <if test="record.testMsg != null" >
+        TEST_MSG = #{record.testMsg,jdbcType=VARCHAR},
+      </if>
+      <if test="record.testStaff != null" >
+        TEST_STAFF = #{record.testStaff,jdbcType=VARCHAR},
+      </if>
+      <if test="record.testDate != null" >
+        TEST_DATE = #{record.testDate,jdbcType=TIMESTAMP},
+      </if>
+      <if test="record.supervisorMsg != null" >
+        SUPERVISOR_MSG = #{record.supervisorMsg,jdbcType=VARCHAR},
+      </if>
+      <if test="record.supervisorStaff != null" >
+        SUPERVISOR_STAFF = #{record.supervisorStaff,jdbcType=VARCHAR},
+      </if>
+      <if test="record.supervisorDate != null" >
+        SUPERVISOR_DATE = #{record.supervisorDate,jdbcType=TIMESTAMP},
+      </if>
+      <if test="record.msgNum != null" >
+        MSG_NUM = #{record.msgNum,jdbcType=VARCHAR},
+      </if>
+      <if test="record.isDeal != null" >
+        IS_DEAL = #{record.isDeal,jdbcType=INTEGER},
+      </if>
+      <if test="record.isWarm != null" >
+        IS_WARM = #{record.isWarm,jdbcType=INTEGER},
+      </if>
+      <if test="record.dataType != null" >
+        DATA_TYPE = #{record.dataType,jdbcType=INTEGER},
+      </if>
+    </set>
+    <if test="_parameter != null" >
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateBy" parameterType="map" >
+    <!--
+      WARNING - @mbggenerated
+    -->
+    update overproof
+    set ID = #{record.id,jdbcType=INTEGER},
+      DATA_ID = #{record.dataId,jdbcType=INTEGER},
+      TENDER_ID = #{record.tenderId,jdbcType=INTEGER},
+      BUILD_MSG = #{record.buildMsg,jdbcType=VARCHAR},
+      BUILD_STAFF = #{record.buildStaff,jdbcType=VARCHAR},
+      BUILD_DATE = #{record.buildDate,jdbcType=TIMESTAMP},
+      TEST_MSG = #{record.testMsg,jdbcType=VARCHAR},
+      TEST_STAFF = #{record.testStaff,jdbcType=VARCHAR},
+      TEST_DATE = #{record.testDate,jdbcType=TIMESTAMP},
+      SUPERVISOR_MSG = #{record.supervisorMsg,jdbcType=VARCHAR},
+      SUPERVISOR_STAFF = #{record.supervisorStaff,jdbcType=VARCHAR},
+      SUPERVISOR_DATE = #{record.supervisorDate,jdbcType=TIMESTAMP},
+      MSG_NUM = #{record.msgNum,jdbcType=VARCHAR},
+      IS_DEAL = #{record.isDeal,jdbcType=INTEGER},
+      IS_WARM = #{record.isWarm,jdbcType=INTEGER},
+      DATA_TYPE = #{record.dataType,jdbcType=INTEGER}
+    <if test="_parameter != null" >
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+</mapper>
