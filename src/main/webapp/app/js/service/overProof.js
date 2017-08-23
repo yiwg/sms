@@ -59,6 +59,7 @@ APP.ViewModel = function() {
     this.list = ko.observableArray();
 
     this.itemTypeList = ko.observableArray();
+    this.isDealOptions = ko.observableArray();
     this.typeList=ko.observableArray();
     this.tempPData = ko.observable(new APP.PData());
 
@@ -90,6 +91,34 @@ APP.ViewModel = function() {
 
     this.itemList=function () {
         itemList();
+        isDealList();
+    }
+    function isDealList() {
+        self.isDealOptions([]);
+        self.isDealOptions.push({
+            itemId: "",
+            itemName :""
+        });
+        self.isDealOptions.push({
+            itemId: 0,
+            itemName :"未处理"
+        });
+        self.isDealOptions.push({
+            itemId: 1,
+            itemName :"已处理"
+        });
+        self.isDealOptions.push({
+            itemId: 2,
+            itemName :"仅中试审批"
+        });
+        self.isDealOptions.push({
+            itemId: 3,
+            itemName :"仅监理审批"
+        });
+        self.isDealOptions.push({
+            itemId: 4,
+            itemName :"已审批"
+        });
     }
     function itemList(){
         self.itemTypeList([]);
@@ -145,17 +174,17 @@ APP.ViewModel = function() {
             data : {
                 tenderId:tenderId,
                 tenderType:tenderType,
-                msgNum:pData.labName,
+                isDeal:pData.isDeal,
             },
             success : function(data) {
                 if (data.success) {
                     var list = data.obj;
                     for (var i = 0, len = list.length; i < len; i++) {
                         var overProof = list[i];
-                        self.list.push(new APP.PData(overProof.id, overProof.dataId, overProoft.enderId,overProoft.buildMsg,overProoft.buildStaff,
-                            overProoft.buildDate,overProoft.testMsg,overProoft.testStaff,overProoft.testDate,overProoft.supervisorMsg,
-                            overProoft.supervisorStaff,overProoft.supervisorDate,overProoft.msgNum,overProoft.isDeal,overProoft.isWarm,
-                            overProoft.dataType,overProoft.testType,overProoft.dataDate,overProoft.constructionPoint));
+                        self.list.push(new APP.PData(overProof.id, overProof.dataId, overProof.enderId,overProof.buildMsg,overProof.buildStaff,
+                            overProof.buildDate,overProof.testMsg,overProof.testStaff,overProof.testDate,overProof.supervisorMsg,
+                            overProof.supervisorStaff,overProof.supervisorDate,overProof.msgNum,overProof.isDeal,overProof.isWarm,
+                            overProof.dataType,overProof.testType,overProof.dataDate,overProof.constructionPoint));
                     }
 
                 } else {

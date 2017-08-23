@@ -213,4 +213,32 @@
       <include refid="Update_By_Example_Where_Clause" />
     </if>
   </update>
+
+  <select  id="queryByKey" resultType="com.xmy.sms.to.OverproofTo">
+    select o.ID,o.DATA_ID,o.TENDER_ID,o.BUILD_MSG,O.BUILD_STAFF,O.BUILD_DATE,O.TEST_MSG,O.TEST_STAFF,O.TEST_DATE,
+    O.SUPERVISOR_MSG,O.SUPERVISOR_STAFF,O.SUPERVISOR_DATE,O.MSG_NUM,O.IS_DEAL,O.IS_WARM,O.DATA_TYPE,
+    p.TEST_DATE dataDate,p.CONSTRUCTION_POINT constructionPoint,
+    p.TEST_TYPE testType,p.STRENGTH_VALUE,p.QUALIFIED,p.REMARD,p.DELETE
+    from overproof o,pressure_data p
+    <where>
+      o.DATA_ID=p.ID
+      <if test="dataTo.id!=null and dataTo.id!=''">
+        and o.ID =#{dataTo.id}
+      </if>
+      <if test="dataTo.tenderId!=null and dataTo.tenderId!='' and dataTo.tenderType==0">
+        and o.TENDER_ID IN (SELECT ID from tender where ITEM_ID= #{dataTo.tenderId})
+      </if>
+      <if test="dataTo.tenderId!=null and dataTo.tenderId!='' and dataTo.tenderType==1">
+        and o.TENDER_ID=#{dataTo.tenderId}
+      </if>
+      <if test="dataTo.dataType!=null and dataTo.dataType!=''">
+        and data_type =#{dataTo.dataType}
+      </if>
+      <if test="dataTo.isDeal!=null and dataTo.isDeal!=''">
+        and is_deal =#{dataTo.isDeal}
+      </if>
+    </where>
+     ORDER BY o.id asc
+  </select>
+
 </mapper>

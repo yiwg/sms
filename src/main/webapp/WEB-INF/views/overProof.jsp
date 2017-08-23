@@ -93,7 +93,7 @@
 										</div>
 										<div class="col-xs-8 column">
 											<select class="ks-input form-control" style="height: 35px"
-													data-bind="value:labName,options: $root.labNameOptions, optionsValue: 'itemId',
+													data-bind="value:isDeal,options: $root.isDealOptions, optionsValue: 'itemId',
 													optionsText: 'itemName'">
 											</select>
 										</div>
@@ -105,10 +105,6 @@
 											<label for="form-field-select-1">实验时间</label>
 										</div>
 										<div class="col-xs-8 column">
-											<select class="ks-input form-control" style="height: 35px"
-													data-bind="value:deviceName,options: $root.deviceNameOptions, optionsValue: 'itemId',
-													optionsText: 'itemName'">
-											</select>
 										</div>
 									</div>
 								</div>
@@ -118,10 +114,6 @@
 											<label for="form-field-select-1">结束时间</label>
 										</div>
 										<div class="col-xs-8 column">
-											<select class="ks-input form-control" style="height: 35px"
-													data-bind="value:testType,options: $root.testTypeOptions, optionsValue: 'itemId',
-													optionsText: 'itemName'">
-											</select>
 										</div>
 									</div>
 								</div>

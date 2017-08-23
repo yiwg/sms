@@ -34,8 +34,6 @@ public class OverproofService extends BaseService implements IOverproofService {
         }
         List<OverproofTo> datas=null;
 
-
-
         try {
             //分页助手
             PageHelper.startPage(page.getPageNum(),page.getPageSize());

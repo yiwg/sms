@@ -22,6 +22,8 @@ public class OverproofTo {
      */
     private Integer tenderId;
 
+    private Integer tenderType;
+
     /**
      * 施工单位处理信息
      */
@@ -403,5 +405,13 @@ public class OverproofTo {
 
     public void setConstructionPoint(String constructionPoint) {
         this.constructionPoint = constructionPoint;
+    }
+
+    public Integer getTenderType() {
+        return tenderType;
+    }
+
+    public void setTenderType(Integer tenderType) {
+        this.tenderType = tenderType;
     }
 }

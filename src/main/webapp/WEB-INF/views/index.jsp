@@ -281,7 +281,7 @@
                             </a>
                         </li>
                         <li>
-                            <a href="${pageContext.request.contextPath}/index/pressOver.do" target="iframe">
+                            <a href="${pageContext.request.contextPath}/overProof/gotoOverproof.do" target="iframe">
                                 <i class="icon-double-angle-right"></i>
                                 压力机超标处理
                             </a>
