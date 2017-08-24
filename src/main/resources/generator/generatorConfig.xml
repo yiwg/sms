@@ -54,7 +54,7 @@
 
     <javaClientGenerator targetPackage="${targetMapperPackage}" targetProject="${targetJavaProject}" type="XMLMAPPER" />
 
-    <table tableName="overproof" >
+    <table tableName="multi_data" >
       <generatedKey column="id" sqlStatement="Mysql" identity="true"/>
     </table>
   </context>

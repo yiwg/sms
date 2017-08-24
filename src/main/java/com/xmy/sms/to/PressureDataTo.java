@@ -496,4 +496,32 @@ public class PressureDataTo {
     public void setTenderType(Integer tenderType) {
         this.tenderType = tenderType;
     }
+
+    @Override
+    public String toString() {
+        return "PressureDataTo{" +
+                "id=" + id +
+                ", tenderId=" + tenderId +
+                ", tenderType=" + tenderType +
+                ", labName='" + labName + '\'' +
+                ", deviceName='" + deviceName + '\'' +
+                ", testType='" + testType + '\'' +
+                ", deviceNum='" + deviceNum + '\'' +
+                ", constructionPoint='" + constructionPoint + '\'' +
+                ", testDate=" + testDate +
+                ", age=" + age +
+                ", deviceSize='" + deviceSize + '\'' +
+                ", designStrength='" + designStrength + '\'' +
+                ", loadOne=" + loadOne +
+                ", loadTwo=" + loadTwo +
+                ", loadThree=" + loadThree +
+                ", strengthOne=" + strengthOne +
+                ", strengthTwo=" + strengthTwo +
+                ", strengthThree=" + strengthThree +
+                ", strengthValue=" + strengthValue +
+                ", qualified=" + qualified +
+                ", remard='" + remard + '\'' +
+                ", delete=" + delete +
+                '}';
+    }
 }

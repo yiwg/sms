@@ -1,32 +1,12 @@
 package com.xmy.sms.controller;
 
-/**
- * Created by yiwg on 2017/8/21.
- */
-
 import com.github.pagehelper.Page;
 import com.github.pagehelper.PageInfo;
 import com.xmy.sms.exception.ServiceException;
 import com.xmy.sms.po.AjaxPo;
-import com.xmy.sms.po.Overproof;
-import com.xmy.sms.to.OverproofTo;
-import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.stereotype.Controller;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.ResponseBody;
-
-import javax.servlet.http.HttpServletRequest;
-import javax.servlet.http.HttpServletResponse;
-import java.util.List;
-
-
-import com.github.pagehelper.Page;
-import com.github.pagehelper.PageInfo;
-import com.xmy.sms.exception.ServiceException;
-import com.xmy.sms.po.AjaxPo;
-import com.xmy.sms.po.Overproof;
-import com.xmy.sms.service.IOverproofService;
-import com.xmy.sms.to.OverproofTo;
+import com.xmy.sms.po.MultiData;
+import com.xmy.sms.service.IMultiDataService;
+import com.xmy.sms.to.MultiDataTo;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -41,36 +21,32 @@ import java.util.Map;
  * Created by yiwg on 2017/7/22.
  */
 @Controller
-@RequestMapping("/overProof")
-public class OverproofController extends BaseController {
+@RequestMapping("/multiData")
+public class MultiDataController extends BaseController {
 
     @Autowired
-    private IOverproofService dataService;
+    private IMultiDataService dataService;
 
-    @RequestMapping(value = "/gotoOverproof")
-    public String gotoProjectCfg(Integer overType,HttpServletRequest request,
-                                 HttpServletResponse response) throws Exception {
-        logger.debug("overProofController.gotoOverproofCfg()。。。。");
-        /*if(overType==0){
-
-        }*/
-        request.setAttribute("overType",overType);
-        return "overProof";
+    @RequestMapping(value = "/gotoMultiData")
+    public String gotoProjectCfg(HttpServletRequest request,
+                            HttpServletResponse response) throws Exception {
+        logger.debug("MultiDataController.gotoMultiDataCfg()。。。。");
+        return "multiData";
     }
 
     @RequestMapping(value = "/list")
     @ResponseBody
-    public AjaxPo list(OverproofTo dataTo, PageInfo page, HttpServletRequest request , HttpServletResponse response) {
+    public AjaxPo list(MultiDataTo dataTo, PageInfo page, HttpServletRequest request , HttpServletResponse response) {
         if (logger.isDebugEnabled()) {
-            logger.debug("overProofController.query()，参数为:"+dataTo);
+            logger.debug("MultiDataController.query()，参数为:"+dataTo);
         }
         AjaxPo ret;
         try{
-            List<OverproofTo> dataTos=dataService.list(dataTo,page);
+            List<MultiDataTo> dataTos=dataService.list(dataTo,page);
             ret=toSuccess(dataTos,((Page)dataTos).getTotal());
         }
         catch (ServiceException e){
-            logger.error("获取超标列表异常",e);
+            logger.error("获取万能机列表异常",e);
             ret=toFail(-1,e.getMessage());
         }
         return ret;
@@ -78,9 +54,9 @@ public class OverproofController extends BaseController {
 
     @RequestMapping(value = "/add")
     @ResponseBody
-    public AjaxPo add(Overproof data, HttpServletRequest request , HttpServletResponse response) {
+    public AjaxPo add(MultiData data, HttpServletRequest request , HttpServletResponse response) {
         if (logger.isDebugEnabled()) {
-            logger.debug("overProofController.add()......参数为:" + data);
+            logger.debug("MultiDataController.add()......参数为:" + data);
         }
         AjaxPo ret ;
         try{
@@ -94,9 +70,9 @@ public class OverproofController extends BaseController {
         return ret;
     }
 
-    @RequestMapping(value = "/update")
+   @RequestMapping(value = "/update")
     @ResponseBody
-    public AjaxPo update(Overproof data, HttpServletRequest request , HttpServletResponse response) {
+    public AjaxPo update(MultiData data, HttpServletRequest request , HttpServletResponse response) {
         if (logger.isDebugEnabled()) {
             logger.debug("ProjectController.update()......参数为:" + data);
         }
@@ -114,7 +90,7 @@ public class OverproofController extends BaseController {
 
     @RequestMapping(value = "/delete")
     @ResponseBody
-    public AjaxPo delete(Overproof data, HttpServletRequest request , HttpServletResponse response) {
+    public AjaxPo delete(MultiData data, HttpServletRequest request , HttpServletResponse response) {
         if (logger.isDebugEnabled()) {
             logger.debug("ProjectController.delete()......参数为:" + data);
         }
@@ -130,5 +106,22 @@ public class OverproofController extends BaseController {
         return ret;
     }
 
-}
+    @RequestMapping(value = "/getOptions")
+    @ResponseBody
+    public AjaxPo getOptions(int id,int type, HttpServletRequest request , HttpServletResponse response) {
+        if (logger.isDebugEnabled()) {
+            logger.debug("MultiDataController.getOptions()，参数为:");
+        }
+        AjaxPo ret;
+        try{
+            Map<String,List<Object>> options=dataService.getOptions(id,type);
 
+            ret=toSuccess(options);
+        }
+        catch (ServiceException e){
+            logger.error("获取万能机列表异常",e);
+            ret=toFail(-1,e.getMessage());
+        }
+        return ret;
+    }
+}

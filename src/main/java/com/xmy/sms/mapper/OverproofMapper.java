@@ -10,15 +10,15 @@ import org.apache.ibatis.annotations.Param;
 import tk.mybatis.mapper.common.Mapper;
 
 public interface OverproofMapper extends Mapper<Overproof> {
-    int countByExample(OverproofExample example);
+    int countBy(OverproofExample example);
 
-    int deleteByExample(OverproofExample example);
+    int deleteBy(OverproofExample example);
 
-    List<Overproof> selectByExample(OverproofExample example);
+    List<Overproof> selectBy(OverproofExample example);
 
-    int updateByExampleSelective(@Param("record") Overproof record, @Param("example") OverproofExample example);
+    int updateBySelective(@Param("record") Overproof record, @Param("example") OverproofExample example);
 
-    int updateByExample(@Param("record") Overproof record, @Param("example") OverproofExample example);
+    int updateBy(@Param("record") Overproof record, @Param("example") OverproofExample example);
 
     List<OverproofTo> queryByKey(@Param("dataTo") OverproofTo dataTo);
 }

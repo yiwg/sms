@@ -1,0 +1,384 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.xmy.sms.mapper.MultiDataMapper" >
+  <resultMap id="BaseResultMap" type="com.xmy.sms.po.MultiData" >
+    <!--
+      WARNING - @mbggenerated
+    -->
+    <id column="ID" property="id" jdbcType="INTEGER" />
+    <result column="TENDER_ID" property="tenderId" jdbcType="INTEGER" />
+    <result column="LAB_NAME" property="labName" jdbcType="VARCHAR" />
+    <result column="DEVICE_NAME" property="deviceName" jdbcType="VARCHAR" />
+    <result column="TEST_TYPE" property="testType" jdbcType="VARCHAR" />
+    <result column="CONSTRUCTION_POINT" property="constructionPoint" jdbcType="VARCHAR" />
+    <result column="DEVICE_NUM" property="deviceNum" jdbcType="VARCHAR" />
+    <result column="REBAR_NUM" property="rebarNum" jdbcType="VARCHAR" />
+    <result column="TEST_DATE" property="testDate" jdbcType="TIMESTAMP" />
+    <result column="DIAMETER" property="diameter" jdbcType="REAL" />
+    <result column="YIELDPOWER_ONE" property="yieldpowerOne" jdbcType="REAL" />
+    <result column="YIELDPOWER_TWO" property="yieldpowerTwo" jdbcType="REAL" />
+    <result column="YIELDPOWER_THREE" property="yieldpowerThree" jdbcType="REAL" />
+    <result column="YIELDSTRENGTH_ONE" property="yieldstrengthOne" jdbcType="REAL" />
+    <result column="YIELDSTRENGTH_TWO" property="yieldstrengthTwo" jdbcType="REAL" />
+    <result column="YIELDSTRENGTH_THREE" property="yieldstrengthThree" jdbcType="REAL" />
+    <result column="TENSILEPOWER_ONE" property="tensilepowerOne" jdbcType="REAL" />
+    <result column="TENSILEPOWER_TWO" property="tensilepowerTwo" jdbcType="REAL" />
+    <result column="TENSILEPOWER_THREE" property="tensilepowerThree" jdbcType="REAL" />
+    <result column="TENSILESTRENGTH_ONE" property="tensilestrengthOne" jdbcType="REAL" />
+    <result column="TENSILESTRENGTH_TWO" property="tensilestrengthTwo" jdbcType="REAL" />
+    <result column="TENSILESTRENGTH_THREE" property="tensilestrengthThree" jdbcType="REAL" />
+    <result column="QUALIFIED" property="qualified" jdbcType="INTEGER" />
+    <result column="DELETE" property="delete" jdbcType="INTEGER" />
+  </resultMap>
+  <sql id="Example_Where_Clause" >
+    <!--
+      WARNING - @mbggenerated
+    -->
+    <where >
+      <foreach collection="oredCriteria" item="criteria" separator="or" >
+        <if test="criteria.valid" >
+          <trim prefix="(" suffix=")" prefixOverrides="and" >
+            <foreach collection="criteria.criteria" item="criterion" >
+              <choose >
+                <when test="criterion.noValue" >
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue" >
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue" >
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue" >
+                  and ${criterion.condition}
+                  <foreach collection="criterion.value" item="listItem" open="(" close=")" separator="," >
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Update_By_Example_Where_Clause" >
+    <!--
+      WARNING - @mbggenerated
+    -->
+    <where >
+      <foreach collection="example.oredCriteria" item="criteria" separator="or" >
+        <if test="criteria.valid" >
+          <trim prefix="(" suffix=")" prefixOverrides="and" >
+            <foreach collection="criteria.criteria" item="criterion" >
+              <choose >
+                <when test="criterion.noValue" >
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue" >
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue" >
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue" >
+                  and ${criterion.condition}
+                  <foreach collection="criterion.value" item="listItem" open="(" close=")" separator="," >
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Base_Column_List" >
+    <!--
+      WARNING - @mbggenerated
+    -->
+    ID, TENDER_ID, LAB_NAME, DEVICE_NAME, TEST_TYPE, CONSTRUCTION_POINT, DEVICE_NUM, 
+    REBAR_NUM, TEST_DATE, DIAMETER, YIELDPOWER_ONE, YIELDPOWER_TWO, YIELDPOWER_THREE, 
+    YIELDSTRENGTH_ONE, YIELDSTRENGTH_TWO, YIELDSTRENGTH_THREE, TENSILEPOWER_ONE, TENSILEPOWER_TWO, 
+    TENSILEPOWER_THREE, TENSILESTRENGTH_ONE, TENSILESTRENGTH_TWO, TENSILESTRENGTH_THREE, 
+    QUALIFIED, DELETE
+  </sql>
+  <select id="selectBy" resultMap="BaseResultMap" parameterType="com.xmy.sms.po.MultiDataExample" >
+    <!--
+      WARNING - @mbggenerated
+    -->
+    select
+    <if test="distinct" >
+      distinct
+    </if>
+    <include refid="Base_Column_List" />
+    from multi_data
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+    <if test="orderByClause != null" >
+      order by ${orderByClause}
+    </if>
+  </select>
+  <delete id="deleteBy" parameterType="com.xmy.sms.po.MultiDataExample" >
+    <!--
+      WARNING - @mbggenerated
+    -->
+    delete from multi_data
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+  </delete>
+  <select id="countBy" parameterType="com.xmy.sms.po.MultiDataExample" resultType="java.lang.Integer" >
+    <!--
+      WARNING - @mbggenerated
+    -->
+    select count(*) from multi_data
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+  </select>
+  <update id="updateBySelective" parameterType="map" >
+    <!--
+      WARNING - @mbggenerated
+    -->
+    update multi_data
+    <set >
+      <if test="record.id != null" >
+        ID = #{record.id,jdbcType=INTEGER},
+      </if>
+      <if test="record.tenderId != null" >
+        TENDER_ID = #{record.tenderId,jdbcType=INTEGER},
+      </if>
+      <if test="record.labName != null" >
+        LAB_NAME = #{record.labName,jdbcType=VARCHAR},
+      </if>
+      <if test="record.deviceName != null" >
+        DEVICE_NAME = #{record.deviceName,jdbcType=VARCHAR},
+      </if>
+      <if test="record.testType != null" >
+        TEST_TYPE = #{record.testType,jdbcType=VARCHAR},
+      </if>
+      <if test="record.constructionPoint != null" >
+        CONSTRUCTION_POINT = #{record.constructionPoint,jdbcType=VARCHAR},
+      </if>
+      <if test="record.deviceNum != null" >
+        DEVICE_NUM = #{record.deviceNum,jdbcType=VARCHAR},
+      </if>
+      <if test="record.rebarNum != null" >
+        REBAR_NUM = #{record.rebarNum,jdbcType=VARCHAR},
+      </if>
+      <if test="record.testDate != null" >
+        TEST_DATE = #{record.testDate,jdbcType=TIMESTAMP},
+      </if>
+      <if test="record.diameter != null" >
+        DIAMETER = #{record.diameter,jdbcType=REAL},
+      </if>
+      <if test="record.yieldpowerOne != null" >
+        YIELDPOWER_ONE = #{record.yieldpowerOne,jdbcType=REAL},
+      </if>
+      <if test="record.yieldpowerTwo != null" >
+        YIELDPOWER_TWO = #{record.yieldpowerTwo,jdbcType=REAL},
+      </if>
+      <if test="record.yieldpowerThree != null" >
+        YIELDPOWER_THREE = #{record.yieldpowerThree,jdbcType=REAL},
+      </if>
+      <if test="record.yieldstrengthOne != null" >
+        YIELDSTRENGTH_ONE = #{record.yieldstrengthOne,jdbcType=REAL},
+      </if>
+      <if test="record.yieldstrengthTwo != null" >
+        YIELDSTRENGTH_TWO = #{record.yieldstrengthTwo,jdbcType=REAL},
+      </if>
+      <if test="record.yieldstrengthThree != null" >
+        YIELDSTRENGTH_THREE = #{record.yieldstrengthThree,jdbcType=REAL},
+      </if>
+      <if test="record.tensilepowerOne != null" >
+        TENSILEPOWER_ONE = #{record.tensilepowerOne,jdbcType=REAL},
+      </if>
+      <if test="record.tensilepowerTwo != null" >
+        TENSILEPOWER_TWO = #{record.tensilepowerTwo,jdbcType=REAL},
+      </if>
+      <if test="record.tensilepowerThree != null" >
+        TENSILEPOWER_THREE = #{record.tensilepowerThree,jdbcType=REAL},
+      </if>
+      <if test="record.tensilestrengthOne != null" >
+        TENSILESTRENGTH_ONE = #{record.tensilestrengthOne,jdbcType=REAL},
+      </if>
+      <if test="record.tensilestrengthTwo != null" >
+        TENSILESTRENGTH_TWO = #{record.tensilestrengthTwo,jdbcType=REAL},
+      </if>
+      <if test="record.tensilestrengthThree != null" >
+        TENSILESTRENGTH_THREE = #{record.tensilestrengthThree,jdbcType=REAL},
+      </if>
+      <if test="record.qualified != null" >
+        QUALIFIED = #{record.qualified,jdbcType=INTEGER},
+      </if>
+      <if test="record.delete != null" >
+        DELETE = #{record.delete,jdbcType=INTEGER},
+      </if>
+    </set>
+    <if test="_parameter != null" >
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateBy" parameterType="map" >
+    <!--
+      WARNING - @mbggenerated
+    -->
+    update multi_data
+    set ID = #{record.id,jdbcType=INTEGER},
+      TENDER_ID = #{record.tenderId,jdbcType=INTEGER},
+      LAB_NAME = #{record.labName,jdbcType=VARCHAR},
+      DEVICE_NAME = #{record.deviceName,jdbcType=VARCHAR},
+      TEST_TYPE = #{record.testType,jdbcType=VARCHAR},
+      CONSTRUCTION_POINT = #{record.constructionPoint,jdbcType=VARCHAR},
+      DEVICE_NUM = #{record.deviceNum,jdbcType=VARCHAR},
+      REBAR_NUM = #{record.rebarNum,jdbcType=VARCHAR},
+      TEST_DATE = #{record.testDate,jdbcType=TIMESTAMP},
+      DIAMETER = #{record.diameter,jdbcType=REAL},
+      YIELDPOWER_ONE = #{record.yieldpowerOne,jdbcType=REAL},
+      YIELDPOWER_TWO = #{record.yieldpowerTwo,jdbcType=REAL},
+      YIELDPOWER_THREE = #{record.yieldpowerThree,jdbcType=REAL},
+      YIELDSTRENGTH_ONE = #{record.yieldstrengthOne,jdbcType=REAL},
+      YIELDSTRENGTH_TWO = #{record.yieldstrengthTwo,jdbcType=REAL},
+      YIELDSTRENGTH_THREE = #{record.yieldstrengthThree,jdbcType=REAL},
+      TENSILEPOWER_ONE = #{record.tensilepowerOne,jdbcType=REAL},
+      TENSILEPOWER_TWO = #{record.tensilepowerTwo,jdbcType=REAL},
+      TENSILEPOWER_THREE = #{record.tensilepowerThree,jdbcType=REAL},
+      TENSILESTRENGTH_ONE = #{record.tensilestrengthOne,jdbcType=REAL},
+      TENSILESTRENGTH_TWO = #{record.tensilestrengthTwo,jdbcType=REAL},
+      TENSILESTRENGTH_THREE = #{record.tensilestrengthThree,jdbcType=REAL},
+      QUALIFIED = #{record.qualified,jdbcType=INTEGER},
+      DELETE = #{record.delete,jdbcType=INTEGER}
+    <if test="_parameter != null" >
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+
+  <select  id="queryByKey" resultType="com.xmy.sms.to.MultiDataTo">
+    select m.id,m.TENDER_ID,m.LAB_NAME,m.DEVICE_NAME,m.TEST_TYPE,m.DEVICE_NUM,m.CONSTRUCTION_POINT,m.TEST_DATE,
+    m.REBAR_NUM,m.DIAMETER,m.YIELDPOWER_ONE,m.YIELDPOWER_TWO,m.YIELDPOWER_THREE,m.YIELDSTRENGTH_ONE,
+    m.YIELDSTRENGTH_TWO,m.YIELDSTRENGTH_THREE,m.TENSILEPOWER_ONE,m.TENSILEPOWER_TWO,m.TENSILEPOWER_THREE,m.TENSILESTRENGTH_ONE,
+    m.TENSILESTRENGTH_TWO,m.TENSILESTRENGTH_THREE,m.QUALIFIED,m.DELETE
+    from multi_data m
+    <where>
+      <if test="dataTo.id!=null and dataTo.id!=''">
+        and ID =#{dataTo.id}
+      </if>
+      <if test="dataTo.tenderId!=null and dataTo.tenderId!='' and dataTo.tenderType==0">
+        and TENDER_ID IN (SELECT ID from tender where ITEM_ID= #{dataTo.tenderId})
+      </if>
+      <if test="dataTo.tenderId!=null and dataTo.tenderId!='' and dataTo.tenderType==1">
+        and TENDER_ID=#{dataTo.tenderId}
+      </if>
+      <if test="dataTo.labName!=null and dataTo.labName!=''">
+        and LAB_NAME =#{dataTo.labName}
+      </if>
+      <if test="dataTo.deviceName!=null and dataTo.deviceName!=''">
+        and DEVICE_NAME = #{dataTo.deviceName}
+      </if>
+      <if test="dataTo.testType!=null and dataTo.testType!=''">
+        and TEST_TYPE =#{dataTo.testType}
+      </if>
+      <if test="dataTo.deviceNum!=null and dataTo.deviceNum!=''">
+        and DEVICE_NUM= #{dataTo.deviceNum}
+      </if>
+      <if test="dataTo.constructionPoint!=null and dataTo.constructionPoint!=''">
+        and CONSTRUCTION_POINT = #{dataTo.constructionPoint}
+      </if>
+      <if test="dataTo.testDate!=null and dataTo.testDate!=''">
+        and TEST_DATE like CONCAT('%','${dataTo.testDate}','%' )
+      </if>
+      <if test="dataTo.qualified!=null and dataTo.qualified!=''">
+        and QUALIFIED = #{dataTo.qualified}
+      </if>
+    </where>
+    ORDER BY ID asc
+  </select>
+
+  <select id="getLabNames" resultType="java.lang.Object">
+    select distinct LAB_NAME from multi_data
+    <where>
+      <if test="type==0">
+        TENDER_ID IN (SELECT ID from tender where ITEM_ID= #{id})
+      </if>
+      <if test="type==1">
+        TENDER_ID=#{id}
+      </if>
+    </where>
+  </select>
+
+  <select id="getDeviceNames" resultType="java.lang.Object">
+    select distinct DEVICE_NAME from multi_data
+    <where>
+      <if test="type==0">
+        TENDER_ID IN (SELECT ID from tender where ITEM_ID= #{id})
+      </if>
+      <if test="type==1">
+        TENDER_ID=#{id}
+      </if>
+    </where>
+  </select>
+
+  <select id="getTestTypes" resultType="java.lang.Object">
+    select distinct TEST_TYPE from multi_data
+    <where>
+      <if test="type==0">
+        TENDER_ID IN (SELECT ID from tender where ITEM_ID= #{id})
+      </if>
+      <if test="type==1">
+        TENDER_ID=#{id}
+      </if>
+    </where>
+  </select>
+
+  <select id="getDeviceNums" resultType="java.lang.Object">
+    select distinct DEVICE_NUM from multi_data
+    <where>
+      <if test="type==0">
+        TENDER_ID IN (SELECT ID from tender where ITEM_ID= #{id})
+      </if>
+      <if test="type==1">
+        TENDER_ID=#{id}
+      </if>
+    </where>
+  </select>
+
+  <!--<select id="getAges" resultType="java.lang.Object">
+    select distinct AGE from pressure_data
+    <where>
+      <if test="type==0">
+        TENDER_ID IN (SELECT ID from tender where ITEM_ID= #{id})
+      </if>
+      <if test="type==1">
+        TENDER_ID=#{id}
+      </if>
+    </where>
+  </select>-->
+
+  <select id="getConstructionPoints" resultType="java.lang.Object">
+    select distinct CONSTRUCTION_POINT from multi_data
+    <where>
+      <if test="type==0">
+        TENDER_ID IN (SELECT ID from tender where ITEM_ID= #{id})
+      </if>
+      <if test="type==1">
+        TENDER_ID=#{id}
+      </if>
+    </where>
+  </select>
+
+  <!--<select id="getDesignStrengths" resultType="java.lang.Object">
+    select distinct DESIGN_STRENGTH from pressure_data
+    <where>
+      <if test="type==0">
+        TENDER_ID IN (SELECT ID from tender where ITEM_ID= #{id})
+      </if>
+      <if test="type==1">
+        TENDER_ID=#{id}
+      </if>
+    </where>
+  </select>-->
+
+</mapper>

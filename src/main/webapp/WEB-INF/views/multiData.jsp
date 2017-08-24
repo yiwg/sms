@@ -42,7 +42,7 @@
 	<script src="${pageContext.request.contextPath}/app/js/ks/ks-validation.js"></script>
 	<script src="${pageContext.request.contextPath}/app/js/ks/ks-dialog.js"></script>
 	<script src="${pageContext.request.contextPath}/app/js/ks/ks-drag.js"></script>
-	<script src="${pageContext.request.contextPath}/app/js/service/overProof.js"></script>
+	<script src="${pageContext.request.contextPath}/app/js/service/multiData.js"></script>
 </head>
 
 <body>
@@ -57,7 +57,7 @@
 				<i class="icon-home home-icon"></i>
 				<a href="#">试验室数据采集</a>
 			</li>
-			<li class="active">压力机超标处理</li>
+			<li class="active">万能机数据</li>
 		</ul><!-- .breadcrumb -->
 	</div>
 
@@ -66,12 +66,12 @@
 		<div class="row" data-bind="visible: hash() == 'list'">
 			<%--<div class="ks-button-group" data-bind="click: gotoAdd">
 				<span class="primary"><span class="glyphicon glyphicon-plus"></span></span>
-				添加压力机数据
+				添加万能机数据
 			</div>--%>
 
 			<div class="col-xs-12">
 				<div class="table-responsive">
-						<div data-bind="with: tempPData">
+						<div data-bind="with: $root.tempPData">
 							<div class="row">
 								<div class="col-xs-2 column">
 									<div class="row">
@@ -89,11 +89,11 @@
 								<div class="col-xs-2 column">
 									<div class="row">
 										<div class="col-xs-4 column">
-											<label for="form-field-select-1">处理结果</label>
+											<label for="form-field-select-1">试验室名称</label>
 										</div>
 										<div class="col-xs-8 column">
 											<select class="ks-input form-control" style="height: 35px"
-													data-bind="value:isDeal,options: $root.isDealOptions, optionsValue: 'itemId',
+													data-bind="value:labName,options: $root.labNameOptions, optionsValue: 'itemId',
 													optionsText: 'itemName'">
 											</select>
 										</div>
@@ -102,9 +102,80 @@
 								<div class="col-xs-2 column">
 									<div class="row">
 										<div class="col-xs-4 column">
-											<label for="form-field-select-1">实验时间</label>
+											<label for="form-field-select-1">设备名称</label>
 										</div>
 										<div class="col-xs-8 column">
+											<select class="ks-input form-control" style="height: 35px"
+													data-bind="value:deviceName,options: $root.deviceNameOptions, optionsValue: 'itemId',
+													optionsText: 'itemName'">
+											</select>
+										</div>
+									</div>
+								</div>
+								<div class="col-xs-2 column">
+									<div class="row">
+										<div class="col-xs-4 column">
+											<label for="form-field-select-1">实验类型</label>
+										</div>
+										<div class="col-xs-8 column">
+											<select class="ks-input form-control" style="height: 35px"
+													data-bind="value:testType,options: $root.testTypeOptions, optionsValue: 'itemId',
+													optionsText: 'itemName'">
+											</select>
+										</div>
+									</div>
+								</div>
+								<div class="col-xs-2 column">
+									<div class="row">
+										<div class="col-xs-4 column">
+											<label for="form-field-select-1">器件编号</label>
+										</div>
+										<div class="col-xs-8 column">
+											<select class="ks-input form-control" style="height: 35px"
+													data-bind="value:deviceNum,options: $root.deviceNumOptions, optionsValue: 'itemId',
+													optionsText: 'itemName'">
+											</select>
+										</div>
+									</div>
+								</div>
+							</div>
+							<div class="row">
+								<div class="col-xs-2 column">
+									<div class="row">
+										<div class="col-xs-4 column">
+											<label for="form-field-select-1">施工部位</label>
+										</div>
+										<div class="col-xs-8 column">
+											<select class="ks-input form-control" style="height: 35px"
+													data-bind="value:constructionPoint,options: $root.constructionPointOptions, optionsValue: 'itemId',
+													optionsText: 'itemName'">
+											</select>
+										</div>
+									</div>
+								</div>
+								<div class="col-xs-2 column">
+									<div class="row">
+
+										<div class="col-xs-4 column">
+											<label>评定结果</label>
+										</div>
+										<div class="col-xs-8 column">
+											<select class="ks-input form-control" style="height: 35px"
+													data-bind="value:qualified,options: $root.qualifiedOptions,optionsValue: 'itemId',optionsText: 'itemName'">
+											</select>
+										</div>
+									</div>
+								</div>
+								<div class="col-xs-2 column">
+									<div class="row">
+										<div class="col-xs-4 column">
+											<label for="form-field-select-1">开始时间</label>
+										</div>
+										<div class="col-xs-8 column">
+											<select class="form-control"  id="form-field-select-10">
+												<option value="">工程部</option>
+												<option value="AL">实施部</option>
+											</select>
 										</div>
 									</div>
 								</div>
@@ -114,11 +185,13 @@
 											<label for="form-field-select-1">结束时间</label>
 										</div>
 										<div class="col-xs-8 column">
+											<select class="form-control"  id="form-field-select-11">
+												<option value="">工程部</option>
+												<option value="AL">实施部</option>
+											</select>
 										</div>
 									</div>
 								</div>
-								<input type="hidden" value="<%=request.getAttribute("overType")%>" id="overType"/>
-								</input>
 								<div class="col-xs-2 column">
 									<button class="btn btn-sm btn-success" data-bind="click:$root.loadDataList">
 										<i class="icon-ok"></i>
@@ -145,45 +218,71 @@
 								</label>
 							</th>--%>
 							<th>序号</th>
-							<th>数据类型</th>
-							<th>操作</th>
-							<th>超标类型</th>
-							<th>试验时间</th>
-							<th>施工部位</th>
+							<th>试验室名称</th>
+							<th>设备名称</th>
 							<th>试验类型</th>
-							<th>试验编号</th>
-							<th>处理时间</th>
-							<th>施工单位处理人</th>
-							<th>中试审批人</th>
-							<th>监理审批人</th>
-							<th>处理流程</th>
-							<th>是否报警</th>
+							<th>施工部位</th>
+							<th>试件编号</th>
+							<th>钢筋编号</th>
+							<th>试验日期</th>
+							<th>直径</th>
+							<th>屈服力(kN)</th>
+							<th>屈服强度（MPa）</th>
+							<th>抗拉力(KN)</th>
+							<th>抗拉强度(MPa)</th>
+							<th>是否合格</th>
 						</tr>
 						</thead>
 
-						<tbody class="table-body-tr" data-bind="foreach:listPage">
+						<tbody class="table-body-tr" data-bind="foreach:$root.listPage">
 						<p >
-
 							<td>
-								<a href="#" data-bind="text:dataId"></a>
+								<a href="#" data-bind="text:id"></a>
 							</td>
-							<td data-bind="text:dataType"></td>
-							<td>操作</td>
-							<td data-bind="text:msgNum"></td>
-							<td data-bind="text:dataDate"></td>
-							<td data-bind="text:constructionPoint"></td>
+							<td data-bind="text:labName"></td>
+							<td data-bind="text:deviceName"></td>
 							<td data-bind="text:testType"></td>
-							<td data-bind="text:dataId"></td>
-							<td data-bind="text:buildDate"></td>
-							<td data-bind="text:buildStaff"></td>
-							<td data-bind="text:testStaff"></td>
-							<td data-bind="text:supervisorStaff"></td>
-							<td data-bind="text:isDeal"></td>
-							<td data-bind="text:isDeal"></td>
-							<td data-bind="text:isWarm"></td>
+						    <td data-bind="text:constructionPoint"></td>
+							<td data-bind="text:deviceNum"></td>
+						    <td data-bind="text:rebarNum"></td>
+							<td data-bind="text:testDate"></td>
+							<td data-bind="text:diameter"></td>
+							<td>
+								<p data-bind="text:yieldpowerOne">
+								</p>
+								<p data-bind="text:yieldpowerTwo">
+								</p>
+								<p data-bind="text:yieldpowerThree">
+								</p>
+							</td>
+							<td>
+								<p data-bind="text:yieldstrengthOne">
+								</p>
+								<p data-bind="text:yieldstrengthTwo">
+								</p>
+								<p data-bind="text:yieldstrengthThree">
+								</p>
+							</td>
+							<td>
+								<p data-bind="text:tensilepowerOne">
+								</p>
+								<p data-bind="text:tensilepowerTwo">
+								</p>
+								<p data-bind="text:tensilepowerThree">
+								</p>
+							</td>
+							<td>
+								<p data-bind="text:tensilestrengthOne">
+								</p>
+								<p data-bind="text:tensilestrengthTwo">
+								</p>
+								<p data-bind="text:tensilestrengthThree">
+								</p>
+							</td>
+							<td data-bind="text:qualified"></td>
 						</tbody>
 					</table>
-					<div class="pull-right" data-bind="visible: list().length > 0">
+					<%--<div class="pull-right" data-bind="visible: list().length > 0">
 						<form action="#list" data-bind="submit: setPage">
 							<div class="ks-pager">
 								跳转至 <input type="number"
@@ -196,7 +295,7 @@
 										data-bind="click: nextPage, enable: nextPageEnabled, css: {'primary': nextPageEnabled}">&gt;</button>
 							</div>
 						</form>
-					</div>
+					</div>--%>
 				</div><!-- /.table-responsive -->
 			</div><!-- /span -->
 
@@ -221,11 +320,11 @@
 				<form id="skillGroupFormId">
 					<table class="ks-form-table" data-bind="with: tempUser">
 						<tr>
-							<td>压力机数据名称：</td>
+							<td>万能机数据名称：</td>
 							<!-- ko if: $root.hash() == 'add' -->
 							<td>
 								<input type="text" class="ks-input" data-bind="value: name"
-									validate="required: true" placeholder="请输入压力机数据名" />
+									validate="required: true" placeholder="请输入万能机数据名" />
 							</td>
 							<!-- /ko -->
 							<!-- ko if: $root.hash() == 'update' -->
@@ -266,7 +365,7 @@
 							<!-- /ko -->
 						</tr>
 						<tr>
-							<td>压力机数据密码：</td>
+							<td>万能机数据密码：</td>
 							<td>
 								<input type="text" class="ks-input" data-bind="value: passWord"
 									   validate="required: true" placeholder="请输入密码" />

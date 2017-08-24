@@ -275,24 +275,24 @@
                             </a>
                         </li>
                         <li>
-                            <a href="${pageContext.request.contextPath}/index/universalRecord.do" target="iframe">
+                            <a href="${pageContext.request.contextPath}/multiData/gotoMultiData.do" target="iframe">
                                 <i class="icon-double-angle-right"></i>
                                 万能机实时数据查看
                             </a>
                         </li>
                         <li>
-                            <a href="${pageContext.request.contextPath}/overProof/gotoOverproof.do" target="iframe">
+                            <a href="${pageContext.request.contextPath}/overProof/gotoOverproof.do?overType=1" target="iframe">
                                 <i class="icon-double-angle-right"></i>
                                 压力机超标处理
                             </a>
                         </li>
                         <li>
-                            <a href="${pageContext.request.contextPath}/index/pressOver.do">
+                            <a href="${pageContext.request.contextPath}/overProof/gotoOverproof.do?overType=2" target="iframe">
                                 <i class="icon-double-angle-right"></i>
                                 万能机机超标处理
                             </a>
                         </li>
-                        <li>
+                        <%--<li>
                             <a href="pressureData.jsp">
                                 <i class="icon-double-angle-right"></i>
                                 沥青针入度
@@ -309,7 +309,7 @@
                                 <i class="icon-double-angle-right"></i>
                                 马歇尔稳定度
                             </a>
-                        </li>
+                        </li>--%>
                     </ul>
                 </li>
 
