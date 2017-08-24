@@ -188,9 +188,9 @@
     </if>
   </update>
 
-  <select  id="queryByKey" resultType="com.xmy.sms.to.MultiDataTo">
-    select m.id,m.TENDER_ID,m.PRODUCTION_NAME,m.CONSTRUCTION_POINT,m.DESIGN_STRENGTH,m.VOLUME
-    m.QUALIFIED,m.PRODUCTION_DATE,m.DATA_ID,m.DATA_CONTENT,
+  <select  id="queryByKey" resultType="com.xmy.sms.to.MixingDataTo">
+    select m.ID,m.TENDER_ID,m.PRODUCTION_NAME,m.CONSTRUCTION_POINT,m.DESIGN_STRENGTH,m.VOLUME,
+    m.QUALIFIED,m.PRODUCTION_DATE,m.DATA_ID,m.DATA_CONTENT
     from mixing_data m
     <where>
       <if test="dataTo.id!=null and dataTo.id!=''">
@@ -207,6 +207,9 @@
       </if>
       <if test="dataTo.designStrength!=null and dataTo.designStrength!=''">
         and DESIGN_STRENGTH = #{dataTo.designStrength}
+      </if>
+      <if test="dataTo.constructionPoint!=null and dataTo.constructionPoint!=''">
+        and CONSTRUCTION_POINT = #{dataTo.constructionPoint}
       </if>
       <if test="dataTo.qualified!=null and dataTo.qualified!=''">
         and QUALIFIED =#{dataTo.qualified}

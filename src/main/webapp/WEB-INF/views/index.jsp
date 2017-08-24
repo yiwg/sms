@@ -323,7 +323,7 @@
 
                     <ul class="submenu">
                         <li>
-                            <a href="#" target="iframe">
+                            <a href="${pageContext.request.contextPath}/mixingData/gotoMixingData" target="iframe">
                                 <%--<a href="/sms/WEB-INF/views/pressureData.jsp">--%>
                                 <i class="icon-double-angle-right"></i>
                                     拌合机用量查询
