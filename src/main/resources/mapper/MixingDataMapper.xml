@@ -1,0 +1,245 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.xmy.sms.mapper.MixingDataMapper" >
+  <resultMap id="BaseResultMap" type="com.xmy.sms.po.MixingData" >
+    <!--
+      WARNING - @mbggenerated
+    -->
+    <id column="ID" property="id" jdbcType="INTEGER" />
+    <result column="TENDER_ID" property="tenderId" jdbcType="INTEGER" />
+    <result column="PRODUCTION_NAME" property="productionName" jdbcType="VARCHAR" />
+    <result column="CONSTRUCTION_POINT" property="constructionPoint" jdbcType="VARCHAR" />
+    <result column="DESIGN_STRENGTH" property="designStrength" jdbcType="VARCHAR" />
+    <result column="VOLUME" property="volume" jdbcType="REAL" />
+    <result column="QUALIFIED" property="qualified" jdbcType="INTEGER" />
+    <result column="PRODUCTION_DATE" property="productionDate" jdbcType="TIMESTAMP" />
+    <result column="DATA_ID" property="dataId" jdbcType="INTEGER" />
+    <result column="DATA_CONTENT" property="dataContent" jdbcType="VARCHAR" />
+    <result column="DELETE" property="delete" jdbcType="INTEGER" />
+  </resultMap>
+  <sql id="Example_Where_Clause" >
+    <!--
+      WARNING - @mbggenerated
+    -->
+    <where >
+      <foreach collection="oredCriteria" item="criteria" separator="or" >
+        <if test="criteria.valid" >
+          <trim prefix="(" suffix=")" prefixOverrides="and" >
+            <foreach collection="criteria.criteria" item="criterion" >
+              <choose >
+                <when test="criterion.noValue" >
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue" >
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue" >
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue" >
+                  and ${criterion.condition}
+                  <foreach collection="criterion.value" item="listItem" open="(" close=")" separator="," >
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Update_By_Example_Where_Clause" >
+    <!--
+      WARNING - @mbggenerated
+    -->
+    <where >
+      <foreach collection="example.oredCriteria" item="criteria" separator="or" >
+        <if test="criteria.valid" >
+          <trim prefix="(" suffix=")" prefixOverrides="and" >
+            <foreach collection="criteria.criteria" item="criterion" >
+              <choose >
+                <when test="criterion.noValue" >
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue" >
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue" >
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue" >
+                  and ${criterion.condition}
+                  <foreach collection="criterion.value" item="listItem" open="(" close=")" separator="," >
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Base_Column_List" >
+    <!--
+      WARNING - @mbggenerated
+    -->
+    ID, TENDER_ID, PRODUCTION_NAME, CONSTRUCTION_POINT, DESIGN_STRENGTH, VOLUME, QUALIFIED, 
+    PRODUCTION_DATE, DATA_ID, DATA_CONTENT, DELETE
+  </sql>
+  <select id="selectBy" resultMap="BaseResultMap" parameterType="com.xmy.sms.po.MixingDataExample" >
+    <!--
+      WARNING - @mbggenerated
+    -->
+    select
+    <if test="distinct" >
+      distinct
+    </if>
+    <include refid="Base_Column_List" />
+    from mixing_data
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+    <if test="orderByClause != null" >
+      order by ${orderByClause}
+    </if>
+  </select>
+  <delete id="deleteBy" parameterType="com.xmy.sms.po.MixingDataExample" >
+    <!--
+      WARNING - @mbggenerated
+    -->
+    delete from mixing_data
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+  </delete>
+  <select id="countBy" parameterType="com.xmy.sms.po.MixingDataExample" resultType="java.lang.Integer" >
+    <!--
+      WARNING - @mbggenerated
+    -->
+    select count(*) from mixing_data
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+  </select>
+  <update id="updateBySelective" parameterType="map" >
+    <!--
+      WARNING - @mbggenerated
+    -->
+    update mixing_data
+    <set >
+      <if test="record.id != null" >
+        ID = #{record.id,jdbcType=INTEGER},
+      </if>
+      <if test="record.tenderId != null" >
+        TENDER_ID = #{record.tenderId,jdbcType=INTEGER},
+      </if>
+      <if test="record.productionName != null" >
+        PRODUCTION_NAME = #{record.productionName,jdbcType=VARCHAR},
+      </if>
+      <if test="record.constructionPoint != null" >
+        CONSTRUCTION_POINT = #{record.constructionPoint,jdbcType=VARCHAR},
+      </if>
+      <if test="record.designStrength != null" >
+        DESIGN_STRENGTH = #{record.designStrength,jdbcType=VARCHAR},
+      </if>
+      <if test="record.volume != null" >
+        VOLUME = #{record.volume,jdbcType=REAL},
+      </if>
+      <if test="record.qualified != null" >
+        QUALIFIED = #{record.qualified,jdbcType=INTEGER},
+      </if>
+      <if test="record.productionDate != null" >
+        PRODUCTION_DATE = #{record.productionDate,jdbcType=TIMESTAMP},
+      </if>
+      <if test="record.dataId != null" >
+        DATA_ID = #{record.dataId,jdbcType=INTEGER},
+      </if>
+      <if test="record.dataContent != null" >
+        DATA_CONTENT = #{record.dataContent,jdbcType=VARCHAR},
+      </if>
+      <if test="record.delete != null" >
+        DELETE = #{record.delete,jdbcType=INTEGER},
+      </if>
+    </set>
+    <if test="_parameter != null" >
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateBy" parameterType="map" >
+    <!--
+      WARNING - @mbggenerated
+    -->
+    update mixing_data
+    set ID = #{record.id,jdbcType=INTEGER},
+      TENDER_ID = #{record.tenderId,jdbcType=INTEGER},
+      PRODUCTION_NAME = #{record.productionName,jdbcType=VARCHAR},
+      CONSTRUCTION_POINT = #{record.constructionPoint,jdbcType=VARCHAR},
+      DESIGN_STRENGTH = #{record.designStrength,jdbcType=VARCHAR},
+      VOLUME = #{record.volume,jdbcType=REAL},
+      QUALIFIED = #{record.qualified,jdbcType=INTEGER},
+      PRODUCTION_DATE = #{record.productionDate,jdbcType=TIMESTAMP},
+      DATA_ID = #{record.dataId,jdbcType=INTEGER},
+      DATA_CONTENT = #{record.dataContent,jdbcType=VARCHAR},
+      DELETE = #{record.delete,jdbcType=INTEGER}
+    <if test="_parameter != null" >
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+
+  <select  id="queryByKey" resultType="com.xmy.sms.to.MultiDataTo">
+    select m.id,m.TENDER_ID,m.PRODUCTION_NAME,m.CONSTRUCTION_POINT,m.DESIGN_STRENGTH,m.VOLUME
+    m.QUALIFIED,m.PRODUCTION_DATE,m.DATA_ID,m.DATA_CONTENT,
+    from mixing_data m
+    <where>
+      <if test="dataTo.id!=null and dataTo.id!=''">
+        and ID =#{dataTo.id}
+      </if>
+      <if test="dataTo.tenderId!=null and dataTo.tenderId!='' and dataTo.tenderType==0">
+        and TENDER_ID IN (SELECT ID from tender where ITEM_ID= #{dataTo.tenderId})
+      </if>
+      <if test="dataTo.tenderId!=null and dataTo.tenderId!='' and dataTo.tenderType==1">
+        and TENDER_ID=#{dataTo.tenderId}
+      </if>
+      <if test="dataTo.productionName!=null and dataTo.productionName!=''">
+        and PRODUCTION_NAME =#{dataTo.productionName}
+      </if>
+      <if test="dataTo.designStrength!=null and dataTo.designStrength!=''">
+        and DESIGN_STRENGTH = #{dataTo.designStrength}
+      </if>
+      <if test="dataTo.qualified!=null and dataTo.qualified!=''">
+        and QUALIFIED =#{dataTo.qualified}
+      </if>
+      <if test="dataTo.dataId!=null and dataTo.dataId!=''">
+        and DATA_ID= #{dataTo.dataId}
+      </if>
+    </where>
+    ORDER BY ID asc
+  </select>
+
+  <select id="getproductionNames" resultType="java.lang.Object">
+    select distinct PRODUCTION_NAME from mixing_data
+    <where>
+      <if test="type==0">
+        TENDER_ID IN (SELECT ID from tender where ITEM_ID= #{id})
+      </if>
+      <if test="type==1">
+        TENDER_ID=#{id}
+      </if>
+    </where>
+  </select>
+
+  <select id="getConstructionPoints" resultType="java.lang.Object">
+    select distinct CONSTRUCTION_POINT from mixing_data
+    <where>
+      <if test="type==0">
+        TENDER_ID IN (SELECT ID from tender where ITEM_ID= #{id})
+      </if>
+      <if test="type==1">
+        TENDER_ID=#{id}
+      </if>
+    </where>
+  </select>
+
+</mapper>
